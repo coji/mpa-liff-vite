@@ -1,7 +1,16 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import apps from '../apps.json'
+
+const handleClick = (app: string) => {
+  location.href = `/${app}/`
+  console.log(app)
+}
 </script>
 
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <h1>Apps</h1>
+
+  <button v-for="app of apps" class="btn btn-primary" @click="handleClick(app)">
+    {{ app }}
+  </button>
 </template>

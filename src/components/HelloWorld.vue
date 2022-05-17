@@ -7,5 +7,5 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1 class="text-slate-500">Hello!</h1>
+  <button class="btn btn-primary">ボタン！</button>
 </template>

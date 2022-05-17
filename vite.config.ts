@@ -1,7 +1,33 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import mix from 'vite-plugin-mix'
+import apps from './apps.json'
 
-// https://vitejs.dev/config/
+const root = resolve(__dirname, 'src')
+const outDir = resolve(__dirname, 'dist')
+
 export default defineConfig({
-  plugins: [vue()]
+  root,
+  publicDir: 'public',
+  plugins: [
+    vue(),
+    mix({
+      handler: './api/hello.ts', // hello world!
+    }),
+  ],
+  resolve: { alias: { '~/': resolve(__dirname, './src') } },
+  build: {
+    outDir,
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(root, 'index.html'),
+        ...apps.reduce((map, app) => {
+          map[app] = resolve(root, app, 'index.html')
+          return map
+        }, {}),
+      },
+    },
+  },
 })
