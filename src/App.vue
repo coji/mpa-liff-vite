@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import apps from '../apps.json'
-import HelloWorld from '~/components/HelloWorld.vue'
+import apps from "~/apps.json"
+import HelloWorld from "~/components/HelloWorld.vue"
 
 const handleClick = (app: string) => {
   location.href = `/${app}/`
@@ -10,11 +10,7 @@ const handleClick = (app: string) => {
 <template>
   <h1>Apps</h1>
 
-  <button
-    v-for="app of Object.keys(apps)"
-    class="btn btn-primary"
-    @click="handleClick(app)"
-  >
+  <button v-for="app of Object.keys(apps)" class="btn btn-primary" @click="handleClick(app)">
     {{ app }}
   </button>
 </template>

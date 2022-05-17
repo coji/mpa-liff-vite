@@ -1,0 +1,24 @@
+{
+  "parser": "vue-eslint-parser",
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "vue/setup-compiler-macros": true
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": ["vue", "@typescript-eslint", "tailwindcss"],
+  "rules": {
+    "tailwindcss/no-custom-classname": "off"
+  }
+}

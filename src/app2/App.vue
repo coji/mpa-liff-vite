@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import HelloWorld from '../components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
-<template>
-  <HelloWorld msg="Helo! App2" />
-</template>
+<template>App2!</template>

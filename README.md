@@ -71,5 +71,3 @@ module.exports = {
   },
 }
 ```
-
-- [testing] API routes supports by [vite-plugin-mix](https://github.com/egoist/vite-plugin-mix).

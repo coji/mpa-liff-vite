@@ -1,6 +1,8 @@
-import { createApp } from 'vue'
-import { VueQueryPlugin } from 'vue-query'
-import App from './App.vue'
-import './index.css'
+import { createApp } from "vue"
+import { VueQueryPlugin } from "vue-query"
+import App from "./App.vue"
+import "./index.css"
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(VueQueryPlugin)
+app.mount("#app")
