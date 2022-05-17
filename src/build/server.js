@@ -403,7 +403,7 @@ class Polka extends trouter {
 var polka = (opts) => new Polka(opts);
 const serveIndex = (req, res) => {
   res.setHeader("Content-Type", "text/html");
-  res.end('<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <link rel="icon" href="/favicon.ico" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>Vite Main</title>\n    <script type="module" crossorigin src="/assets/main.2308dd8a.js"><\/script>\n    <link rel="modulepreload" href="/assets/index.dc7a46fc.js">\n    <link rel="stylesheet" href="/assets/index.183fb53a.css">\n  </head>\n  <body>\n    <div id="app"></div>\n    \n  </body>\n</html>\n');
+  res.end('<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <link rel="icon" href="/favicon.ico" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>Vite Main</title>\n    <script type="module" crossorigin src="/assets/main.555bdc20.js"><\/script>\n    <link rel="modulepreload" href="/assets/runtime-dom.esm-bundler.216b58eb.js">\n    <link rel="modulepreload" href="/assets/apps.87e351b6.js">\n    <link rel="stylesheet" href="/assets/main.2d9e03e5.css">\n  </head>\n  <body>\n    <div id="app"></div>\n    \n  </body>\n</html>\n');
 };
 const applyHandler = (server2) => {
   if (Array.isArray(handler.handler)) {

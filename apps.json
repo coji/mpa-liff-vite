@@ -1,1 +1,14 @@
-["app1", "app2"]
+{
+  "app1": {
+    "liffId": {
+      "development": "development app1 liff id here",
+      "production": "production app1 liff id here"
+    }
+  },
+  "app2": {
+    "liffId": {
+      "development": "development app2 liff id here",
+      "production": "production app2 liff id here"
+    }
+  }
+}

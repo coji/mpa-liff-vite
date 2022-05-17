@@ -7,5 +7,5 @@ const count = ref(0)
 </script>
 
 <template>
-  <button class="btn btn-primary">ボタン！</button>
+  <button class="btn btn-primary">{{ msg }}</button>
 </template>

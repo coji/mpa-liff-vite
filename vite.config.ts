@@ -16,14 +16,14 @@ export default defineConfig({
       handler: './api/hello.ts', // hello world!
     }),
   ],
-  resolve: { alias: { '~/': resolve(__dirname, './src') } },
+  resolve: { alias: { '~/': '/' } },
   build: {
     outDir,
     emptyOutDir: true,
     rollupOptions: {
       input: {
         main: resolve(root, 'index.html'),
-        ...apps.reduce((map, app) => {
+        ...Object.keys(apps).reduce((map, app) => {
           map[app] = resolve(root, app, 'index.html')
           return map
         }, {}),

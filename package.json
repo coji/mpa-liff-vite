@@ -1,5 +1,5 @@
 {
-  "name": "hello-vue3",
+  "name": "mpa-liff-vite",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -8,9 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@line/liff": "^2.19.1",
     "daisyui": "^2.15.0",
     "ky": "^0.30.0",
-    "vue": "^3.2.33"
+    "vue": "^3.2.33",
+    "vue-query": "^1.23.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
