@@ -18,7 +18,7 @@ onMounted(async () => {
 })
 
 const handleClickSayHello = async () => {
-  const ret = await ky.get('/hello').text()
+  const ret = await ky.get('/api/hello').text()
   alert(ret)
 }
 </script>

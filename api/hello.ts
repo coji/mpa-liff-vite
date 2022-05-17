@@ -3,7 +3,7 @@ import type { Handler } from 'vite-plugin-mix'
 // @see https://github.com/egoist/vite-plugin-mix
 
 export const handler: Handler = (req, res, next) => {
-  if (req.path === '/hello') {
+  if (req.path === '/api/hello') {
     return res.end('Hello world!')
   }
   next()

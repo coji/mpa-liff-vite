@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     vue(),
     mix({
-      handler: './api/hello.ts', // hello world!
+      handler: resolve(__dirname, './api/hello.ts'), // hello world!
     }),
   ],
   resolve: { alias: { '~/': '/' } },
