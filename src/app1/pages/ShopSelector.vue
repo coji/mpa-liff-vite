@@ -1,16 +1,83 @@
 <script setup lang="ts">
+import { ref, watchEffect } from "vue"
+import AppHeading from "../components/AppHeading.vue"
+import AppCheckMark from "../components/AppCheckMark.vue"
 import type { Shop } from "../hooks/useShopListMaster"
 
-defineProps<{
+const props = defineProps<{
   prefecture: { region: string; prefecture: string }
   shoplist: Shop[]
+  selection?: { shop: string; num: string }
+}>()
+const selectedShop = ref<string>()
+const selectedNum = ref<string>()
+
+watchEffect(() => {
+  if (props.selection) {
+    // 戻ってきたときなどで選択済みにしとく
+    selectedShop.value = props.selection.shop
+    selectedNum.value = props.selection.num
+  }
+})
+
+const emit = defineEmits<{
+  (event: "select", { shop, num }: { shop: string; num: string }): void
 }>()
 
-//const emit = defineEmits<{ (event: "back"): void }>()
+const handleClickNext = () => {
+  if (selectedShop.value && selectedNum.value) {
+    emit("select", { shop: selectedShop.value, num: selectedNum.value })
+  } else {
+    // error
+  }
+}
 </script>
 
 <template>
-  shops! {{ prefecture }}
+  <div class="grid grid-cols-1 gap-8 m-4">
+    <div>
+      <AppHeading>店舗選択</AppHeading>
+      <div class="text-xs">ご希望の店舗を選択してください。</div>
+      <div class="grid grid-cols-4 gap-3">
+        <div v-for="shop of shoplist" :key="shop.name" class="block text-center">
+          <input
+            :id="shop.name"
+            v-model="selectedShop"
+            type="radio"
+            name="shop"
+            class="checked:text-blue-500 w-30"
+            :value="shop.name"
+            :checked="shop.name === selectedShop"
+          />
+          <label :for="shop.name"> {{ shop.name }} </label>
+        </div>
+      </div>
+    </div>
 
-  {{ shoplist }}
+    <div>
+      <AppHeading>ご来店人数</AppHeading>
+      <div class="text-xs">ご来店人数を選択してください。</div>
+      <div class="grid grid-cols-3 gap-3">
+        <div v-for="i of [1, 2, 3]" :key="i" class="block text-center">
+          <input
+            :id="`num-of-person-${i}`"
+            v-model="selectedNum"
+            type="radio"
+            name="num"
+            class="w-30 chekckbox"
+            :value="`${i}`"
+            :checked="`${i}` === selectedNum"
+          />
+          <label :for="`num-of-person-${i}`">{{ i }} 人</label>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="block text-lg font-bold text-white bg-gradient-to-b from-green-400 to-green-800 rounded-md border-0 btn"
+      @click="handleClickNext()"
+    >
+      希望日時の入力に進む <AppCheckMark />
+    </button>
+  </div>
 </template>

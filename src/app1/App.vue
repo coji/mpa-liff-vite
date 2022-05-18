@@ -23,9 +23,16 @@ onMounted(async () => {
 })
 
 const { data } = useShopListQuery()
+
 const prefecture = ref<{ region: string; prefecture: string }>()
 const handleSelectPrefecture = (selection: { region: string; prefecture: string }) => {
   prefecture.value = selection
+  router.next()
+}
+
+const shop = ref<{ shop: string; num: string }>()
+const handleSelectShop = (selection: { shop: string; num: string }) => {
+  shop.value = selection
   router.next()
 }
 </script>
@@ -34,7 +41,7 @@ const handleSelectPrefecture = (selection: { region: string; prefecture: string 
   <div class="min-h-screen">
     <BackButton :router="router" class="text-red-400" />
 
-    <div v-if="data">
+    <div v-if="data" class="px-4">
       <PrefectureSelector
         v-if="router.current.value === 'prefecture'"
         :shoplist="data"
@@ -45,7 +52,15 @@ const handleSelectPrefecture = (selection: { region: string; prefecture: string 
         v-if="router.current.value === 'shop' && prefecture"
         :prefecture="prefecture"
         :shoplist="data[prefecture.region][prefecture.prefecture]"
+        :selection="shop"
+        @select="handleSelectShop"
       />
+
+      <div v-if="router.current.value === 'schedule'">
+        スケジュール
+        {{ shop }}
+      </div>
+      <div v-if="router.current.value === 'done'">完了</div>
     </div>
   </div>
 </template>
