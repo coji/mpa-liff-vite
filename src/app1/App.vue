@@ -14,7 +14,9 @@ import MemberPage from "./pages/MemberPage.vue"
 import SchedulePage from "./pages/SchedulePage.vue"
 import ConfirmPage from "./pages/ConfirmPage.vue"
 
-const router = useLinearRouter({ routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"] })
+const router = useLinearRouter({
+  routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"]
+})
 
 onMounted(async () => {
   /*
