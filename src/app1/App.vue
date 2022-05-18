@@ -50,7 +50,7 @@ const handleSelectShop = ({ shop, member }: { shop: string; member: string }) =>
   router.next()
 }
 
-const handleSScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
+const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
   selection.value.firstChoice = firstChoice
   selection.value.secondChoice = secondChoice
   router.next()
@@ -69,14 +69,14 @@ const handleSScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: str
       />
 
       <ShopSelector
-        v-if="router.current.value === 'shop' && selection.prefecture"
+        v-if="router.current.value === 'shop'"
         :prefecture="selection.prefecture"
         :shoplist="data[selection.region][selection.prefecture]"
         :selection="selection"
         @select="handleSelectShop"
       />
 
-      <ScheduleSelector v-if="router.current.value === 'schedule'" @select="handleSScheduleChoice" />
+      <ScheduleSelector v-if="router.current.value === 'schedule'" @select="handleScheduleChoice" />
 
       <div v-if="router.current.value === 'done'">完了</div>
     </div>
