@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue"
 import AppHeading from "../components/AppHeading.vue"
-import AppCheckMark from "../components/AppCheckMark.vue"
+import AppNextButton from "../components/AppNextButton.vue"
 import type { Selection, Shop } from "../interfaces/model"
 
 const props = defineProps<{
@@ -10,21 +10,21 @@ const props = defineProps<{
 }>()
 
 const selectedShop = ref<string>()
-const selectedNum = ref<string>("1")
+const selectedMember = ref<string>("1")
 watchEffect(() => {
   if (props.selection) {
     // 戻ってきたときなどで選択済みにしとく
     selectedShop.value = props.selection.shop
-    selectedNum.value = props.selection.num || "1"
+    selectedMember.value = props.selection.member || "1名"
   }
 })
 
 const emit = defineEmits<{
-  (event: "select", { shop, num }: { shop: string; num: string }): void
+  (event: "select", { shop, member }: { shop: string; member: string }): void
 }>()
 const handleClickNext = () => {
-  if (selectedShop.value && selectedNum.value) {
-    emit("select", { shop: selectedShop.value, num: selectedNum.value })
+  if (!!selectedShop.value && !!selectedMember.value) {
+    emit("select", { shop: selectedShop.value, member: selectedMember.value })
   } else {
     // error
   }
@@ -59,23 +59,18 @@ const handleClickNext = () => {
         <div v-for="i of [1, 2, 3]" :key="i" class="block text-center">
           <input
             :id="`num-of-person-${i}`"
-            v-model="selectedNum"
+            v-model="selectedMember"
             type="radio"
             name="num"
             class="w-30 chekckbox"
-            :value="`${i}`"
-            :checked="`${i}` === selectedNum"
+            :value="`${i}名`"
+            :checked="`${i}名` === selectedMember"
           />
-          <label :for="`num-of-person-${i}`">{{ i }} 人</label>
+          <label :for="`num-of-person-${i}`">{{ i }}人</label>
         </div>
       </div>
     </div>
 
-    <button
-      class="block text-lg font-bold text-white bg-gradient-to-b from-green-400 to-green-800 rounded-md border-0 btn"
-      @click="handleClickNext()"
-    >
-      希望日時の入力に進む <AppCheckMark />
-    </button>
+    <AppNextButton @click="handleClickNext()"> 希望日時の入力に進む </AppNextButton>
   </div>
 </template>

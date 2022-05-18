@@ -8,5 +8,7 @@ export interface Selection {
   region: string
   prefecture: string
   shop: string
-  num: string
+  member: string
+  firstChoice: string
+  secondChoice: string
 }

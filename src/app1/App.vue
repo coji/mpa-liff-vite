@@ -30,25 +30,36 @@ const selection = ref<Selection>({
   region: "",
   prefecture: "",
   shop: "",
-  num: ""
+  member: "",
+  firstChoice: "",
+  secondChoice: ""
 })
 
 const handleSelectPrefecture = ({ region, prefecture }: { region: string; prefecture: string }) => {
+  if (selection.value.prefecture !== prefecture) {
+    selection.value.shop = "" // バックで戻ってきたとき別の都道府県を選択したら店舗選択をリセット
+  }
   selection.value.region = region
   selection.value.prefecture = prefecture
   router.next()
 }
 
-const handleSelectShop = ({ shop, num }: { shop: string; num: string }) => {
+const handleSelectShop = ({ shop, member }: { shop: string; member: string }) => {
   selection.value.shop = shop
-  selection.value.num = num
+  selection.value.member = member
+  router.next()
+}
+
+const handleSScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
+  selection.value.firstChoice = firstChoice
+  selection.value.secondChoice = secondChoice
   router.next()
 }
 </script>
 
 <template>
   <div class="min-h-screen">
-    <BackButton :router="router" class="text-pink-400" />
+    <BackButton :router="router" class="text-pink-400 hover:text-pink-600" />
 
     <div v-if="data">
       <PrefectureSelector
@@ -65,7 +76,7 @@ const handleSelectShop = ({ shop, num }: { shop: string; num: string }) => {
         @select="handleSelectShop"
       />
 
-      <ScheduleSelector v-if="router.current.value === 'schedule'" />
+      <ScheduleSelector v-if="router.current.value === 'schedule'" @select="handleSScheduleChoice" />
 
       <div v-if="router.current.value === 'done'">完了</div>
     </div>
