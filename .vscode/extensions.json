@@ -1,3 +1,22 @@
 {
-  "recommendations": ["Vue.volar"]
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "Vue.volar",
+
+    "yzhang.markdown-all-in-one",
+    "silvenon.mdx",
+    "hediet.vscode-drawio",
+
+    "eamodio.gitlens",
+    "gitlab.gitlab-workflow",
+
+    "ms-azuretools.vscode-docker",
+    "exiasr.hadolint",
+
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-vscode.live-server",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "ms-vscode-remote.remote-containers"
+  ]
 }

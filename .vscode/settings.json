@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.cursorBlinking": "smooth", // カーソルを滑らかに点滅
+  "editor.cursorSmoothCaretAnimation": true, // カーソルの点滅をアニメーション表示
+  "editor.guides.bracketPairs": true, // 括弧の対応ガイドを表示
+  "editor.bracketPairColorization.enabled": true, // 括弧の対応を色付け
+  "editor.renderLineHighlight": "all", // 選択行の行番号をハイライト
+  "editor.linkedEditing": true, // HTMLタグの編集時に
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggestSelection": "first", // サジェスト一覧の初期表示項目設定
+  "files.autoGuessEncoding": true, // ファイルのエンコード自動判定
+  "explorer.incrementalNaming": "smart" // ファイルコピー時に名前を連番生成
+}
