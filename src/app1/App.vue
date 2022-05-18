@@ -6,9 +6,11 @@ import { onMounted, ref } from "vue"
 import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
 import BackButton from "~/features/router/components/BackButton.vue"
 
+import type { Selection } from "./interfaces/model"
 import { useShopListQuery } from "./hooks/useShopListMaster"
 import PrefectureSelector from "./pages/PrefectureSelector.vue"
 import ShopSelector from "./pages/ShopSelector.vue"
+import ScheduleSelector from "./pages/ScheduleSelector.vue"
 
 const router = useLinearRouter({ routing: ["prefecture", "shop", "schedule", "done"] })
 
@@ -24,15 +26,22 @@ onMounted(async () => {
 
 const { data } = useShopListQuery()
 
-const prefecture = ref<{ region: string; prefecture: string }>()
-const handleSelectPrefecture = (selection: { region: string; prefecture: string }) => {
-  prefecture.value = selection
+const selection = ref<Selection>({
+  region: "",
+  prefecture: "",
+  shop: "",
+  num: ""
+})
+
+const handleSelectPrefecture = ({ region, prefecture }: { region: string; prefecture: string }) => {
+  selection.value.region = region
+  selection.value.prefecture = prefecture
   router.next()
 }
 
-const shop = ref<{ shop: string; num: string }>()
-const handleSelectShop = (selection: { shop: string; num: string }) => {
-  shop.value = selection
+const handleSelectShop = ({ shop, num }: { shop: string; num: string }) => {
+  selection.value.shop = shop
+  selection.value.num = num
   router.next()
 }
 </script>
@@ -41,7 +50,7 @@ const handleSelectShop = (selection: { shop: string; num: string }) => {
   <div class="min-h-screen">
     <BackButton :router="router" class="text-red-400" />
 
-    <div v-if="data" class="px-4">
+    <div v-if="data">
       <PrefectureSelector
         v-if="router.current.value === 'prefecture'"
         :shoplist="data"
@@ -49,17 +58,15 @@ const handleSelectShop = (selection: { shop: string; num: string }) => {
       />
 
       <ShopSelector
-        v-if="router.current.value === 'shop' && prefecture"
-        :prefecture="prefecture"
-        :shoplist="data[prefecture.region][prefecture.prefecture]"
-        :selection="shop"
+        v-if="router.current.value === 'shop' && selection.prefecture"
+        :prefecture="selection.prefecture"
+        :shoplist="data[selection.region][selection.prefecture]"
+        :selection="selection"
         @select="handleSelectShop"
       />
 
-      <div v-if="router.current.value === 'schedule'">
-        スケジュール
-        {{ shop }}
-      </div>
+      <ScheduleSelector v-if="router.current.value === 'schedule'" />
+
       <div v-if="router.current.value === 'done'">完了</div>
     </div>
   </div>

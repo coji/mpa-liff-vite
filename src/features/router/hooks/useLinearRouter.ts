@@ -18,7 +18,6 @@ export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
 
   // 戻る
   const back = () => {
-    console.log("back")
     if (current.value > 0) {
       history.value.push(routing[current.value])
       current.value--

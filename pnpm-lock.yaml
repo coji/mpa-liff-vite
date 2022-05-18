@@ -10,6 +10,7 @@ specifiers:
   '@vue/eslint-config-typescript': ^10.0.0
   autoprefixer: ^10.4.7
   daisyui: ^2.15.0
+  dayjs: ^1.11.2
   eslint: ^8.15.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-tailwindcss: ^3.5.0
@@ -30,6 +31,7 @@ specifiers:
 dependencies:
   '@line/liff': 2.19.1
   daisyui: 2.15.0_cr4sis33dk4di3xnobyqnqmrf4
+  dayjs: 1.11.2
   ky: 0.30.0
   vue: 3.2.33
   vue-query: 1.23.1_vue@3.2.33
@@ -1315,6 +1317,10 @@ packages:
       tailwindcss: 3.0.24
     transitivePeerDependencies:
       - ts-node
+    dev: false
+
+  /dayjs/1.11.2:
+    resolution: {integrity: sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==}
     dev: false
 
   /debug/2.6.9:

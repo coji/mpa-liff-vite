@@ -2,28 +2,26 @@
 import { ref, watchEffect } from "vue"
 import AppHeading from "../components/AppHeading.vue"
 import AppCheckMark from "../components/AppCheckMark.vue"
-import type { Shop } from "../hooks/useShopListMaster"
+import type { Selection, Shop } from "../interfaces/model"
 
 const props = defineProps<{
-  prefecture: { region: string; prefecture: string }
   shoplist: Shop[]
-  selection?: { shop: string; num: string }
+  selection?: Selection
 }>()
-const selectedShop = ref<string>()
-const selectedNum = ref<string>()
 
+const selectedShop = ref<string>()
+const selectedNum = ref<string>("1")
 watchEffect(() => {
   if (props.selection) {
     // 戻ってきたときなどで選択済みにしとく
     selectedShop.value = props.selection.shop
-    selectedNum.value = props.selection.num
+    selectedNum.value = props.selection.num || "1"
   }
 })
 
 const emit = defineEmits<{
   (event: "select", { shop, num }: { shop: string; num: string }): void
 }>()
-
 const handleClickNext = () => {
   if (selectedShop.value && selectedNum.value) {
     emit("select", { shop: selectedShop.value, num: selectedNum.value })
@@ -36,8 +34,8 @@ const handleClickNext = () => {
 <template>
   <div class="grid grid-cols-1 gap-8 m-4">
     <div>
-      <AppHeading>店舗選択</AppHeading>
-      <div class="text-xs">ご希望の店舗を選択してください。</div>
+      <AppHeading level="2">店舗選択</AppHeading>
+      <div class="text-xs text-slate-500">ご希望の店舗を選択してください。</div>
       <div class="grid grid-cols-4 gap-3">
         <div v-for="shop of shoplist" :key="shop.name" class="block text-center">
           <input
@@ -55,8 +53,8 @@ const handleClickNext = () => {
     </div>
 
     <div>
-      <AppHeading>ご来店人数</AppHeading>
-      <div class="text-xs">ご来店人数を選択してください。</div>
+      <AppHeading level="2">ご来店人数</AppHeading>
+      <div class="text-xs text-slate-500">ご来店人数を選択してください。</div>
       <div class="grid grid-cols-3 gap-3">
         <div v-for="i of [1, 2, 3]" :key="i" class="block text-center">
           <input

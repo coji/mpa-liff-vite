@@ -1,16 +1,11 @@
 import { useQuery } from "vue-query"
 import ky from "ky"
+import type { Shop } from "../interfaces/model"
 
 export interface ShopListMaster {
   [region: string]: {
     [prefecture: string]: Shop[]
   }
-}
-
-export interface Shop {
-  region: string
-  prefecture: string
-  name: string
 }
 
 export const useShopListQuery = () => {
