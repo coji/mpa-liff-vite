@@ -17,7 +17,7 @@ const handleClickPrefecture = (region: string, prefecture: string) => {
 </script>
 
 <template>
-  <div class="m-4">
+  <div>
     <AppHeading>店舗検索</AppHeading>
     <div class="text-xs text-slate-500">エリアを選択すると、選択可能な店舗が表示されます。</div>
 

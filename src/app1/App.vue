@@ -54,6 +54,7 @@ const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: stri
   selection.value.firstChoice = firstChoice
   selection.value.secondChoice = secondChoice
   router.next()
+  console.log("schedule choiced", firstChoice, secondChoice)
 }
 </script>
 
@@ -61,7 +62,7 @@ const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: stri
   <div class="min-h-screen">
     <BackButton :router="router" class="text-pink-400 hover:text-pink-600" />
 
-    <div v-if="data">
+    <div v-if="data" class="m-4">
       <PrefecturePage v-if="router.current.value === 'prefecture'" :shoplist="data" @select="handleSelectPrefecture" />
 
       <ShopPage
@@ -72,9 +73,33 @@ const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: stri
         @select="handleSelectShop"
       />
 
-      <SchedulePage v-if="router.current.value === 'schedule'" @select="handleScheduleChoice" />
+      <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleScheduleChoice" />
 
-      <div v-if="router.current.value === 'done'">完了</div>
+      <div v-if="router.current.value === 'done'">
+        <h1 class="text-xl font-bold text-pink-400">開発テスト表示: 以下の内容で登録されます。</h1>
+        <div class="p-8 text-center bg-slate-200">
+          <div class="mx-auto shadow stats stats-vertical">
+            <div class="stat">
+              <div class="stat-title">希望店舗</div>
+              <div class="stat-value">{{ selection.shop }}</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">人数</div>
+              <div class="stat-value">{{ selection.member }}</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">第１希望日時</div>
+              <div class="stat-value">{{ selection.firstChoice }}</div>
+            </div>
+            <div class="stat">
+              <div class="stat-title">第２希望日時</div>
+              <div class="stat-value">{{ selection.secondChoice }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

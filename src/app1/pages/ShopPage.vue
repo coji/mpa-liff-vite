@@ -32,7 +32,7 @@ const handleClickNext = () => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-8 m-4">
+  <div class="grid grid-cols-1 gap-8">
     <div>
       <AppHeading level="2">店舗選択</AppHeading>
       <div class="text-xs text-slate-500">ご希望の店舗を選択してください。</div>
