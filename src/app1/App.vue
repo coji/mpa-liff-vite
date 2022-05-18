@@ -2,9 +2,15 @@
 import { onMounted, ref } from "vue"
 // import Liff from "@line/liff"
 // import apps from "~/apps.json"
+
+import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
+import BackButton from "~/features/router/components/BackButton.vue"
+
+import { useShopListQuery } from "./hooks/useShopListMaster"
 import PrefectureSelector from "./pages/PrefectureSelector.vue"
 import ShopSelector from "./pages/ShopSelector.vue"
-import { useShopListQuery } from "./hooks/useShopListMaster"
+
+const router = useLinearRouter({ routing: ["prefecture", "shop", "schedule", "done"] })
 
 onMounted(async () => {
   /*
@@ -17,21 +23,26 @@ onMounted(async () => {
 })
 
 const { data } = useShopListQuery()
-const state = ref<"prefecture" | "shop">("prefecture")
 const prefecture = ref<{ region: string; prefecture: string }>()
 const handleSelectPrefecture = (selection: { region: string; prefecture: string }) => {
   prefecture.value = selection
-  state.value = "shop"
+  router.next()
 }
 </script>
 
 <template>
   <div class="min-h-screen">
+    <BackButton :router="router" />
+
     <div v-if="data">
-      <PrefectureSelector v-if="state === 'prefecture'" :shoplist="data" @select="handleSelectPrefecture" />
+      <PrefectureSelector
+        v-if="router.current.value === 'prefecture'"
+        :shoplist="data"
+        @select="handleSelectPrefecture"
+      />
 
       <ShopSelector
-        v-if="state === 'shop' && prefecture"
+        v-if="router.current.value === 'shop' && prefecture"
         :prefecture="prefecture"
         :shoplist="data[prefecture.region][prefecture.prefecture]"
       />
