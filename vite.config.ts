@@ -16,7 +16,6 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(root, "index.html"),
         ...Object.keys(apps).reduce((map, app) => {
           map[app] = resolve(root, app, "index.html")
           return map

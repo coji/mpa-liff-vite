@@ -1,30 +1,19 @@
 <script setup lang="ts">
-import dayjs from "~/utils/dayjs"
+import { ref } from "vue"
+import AppHeading from "../components/AppHeading.vue"
+import AppWeekSelector from "../components/AppWeekSelector.vue"
 
-const dayStart1 = dayjs().add(1, "day")
-const dayStart2 = dayjs().add(1, "day")
+const choice1 = ref<string>()
 </script>
 
 <template>
   <div>
-    <h1>第1希望</h1>
-    <div>ご希望の日時を選択してください。</div>
-    <div>
-      <div>前の7日</div>
-      <div>次の7日</div>
-    </div>
-    <div>
-      {{ dayStart1 }}
-    </div>
+    <AppHeading>第1希望</AppHeading>
+    <div class="text-2xs">ご希望の日時を選択してください。</div>
+    <AppWeekSelector name="firstChoice" />
 
-    <h1>第2希望</h1>
-    <div>(第2希望は設定いただかなくても先に進んでいただけます。)</div>
-    <div>
-      <div>前の7日</div>
-      <div>次の7日</div>
-    </div>
-    <div>
-      {{ dayStart2 }}
-    </div>
+    <AppHeading>第2希望</AppHeading>
+    <div class="text-red-500 text-2xs">（第2希望も必ずご選択ください。）</div>
+    <AppWeekSelector name="secondChoice" />
   </div>
 </template>

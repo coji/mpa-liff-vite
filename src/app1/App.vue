@@ -48,7 +48,7 @@ const handleSelectShop = ({ shop, num }: { shop: string; num: string }) => {
 
 <template>
   <div class="min-h-screen">
-    <BackButton :router="router" class="text-red-400" />
+    <BackButton :router="router" class="text-pink-400" />
 
     <div v-if="data">
       <PrefectureSelector
