@@ -32,7 +32,7 @@ const handleSelectPrefecture = (selection: { region: string; prefecture: string 
 
 <template>
   <div class="min-h-screen">
-    <BackButton :router="router" />
+    <BackButton :router="router" class="text-red-400" />
 
     <div v-if="data">
       <PrefectureSelector
