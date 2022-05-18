@@ -38,22 +38,20 @@ const handleClickNext = () => {
   <div class="grid grid-cols-1 gap-8">
     <div class="grid grid-cols-1 gap-4">
       <div>
-        <AppHeading>第1希望</AppHeading>
-        <div class="text-2xs">ご希望の日時を選択してください。</div>
+        <AppHeading level="1">第1希望</AppHeading>
       </div>
       <AppWeekSelector v-model="firstChoice" name="firstChoice" />
     </div>
 
     <div class="grid grid-cols-1 gap-4">
       <div>
-        <AppHeading>第2希望</AppHeading>
-        <div class="text-red-500 text-2xs">（第2希望も必ずご選択ください。）</div>
+        <AppHeading level="1">第2希望</AppHeading>
       </div>
       <AppWeekSelector v-model="secondChoice" name="secondChoice" />
     </div>
 
-    <AppWarning v-if="isError">第1希望、第1希望どちらも選択必須です。</AppWarning>
+    <AppWarning v-if="isError">第1希望、第2希望両方の選択が必要です。</AppWarning>
 
-    <AppNextButton @click="handleClickNext()"> 希望日時の入力に進む </AppNextButton>
+    <AppNextButton @click="handleClickNext()"> 予約確認 </AppNextButton>
   </div>
 </template>

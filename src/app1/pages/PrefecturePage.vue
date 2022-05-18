@@ -18,18 +18,17 @@ const handleClickPrefecture = (region: string, prefecture: string) => {
 
 <template>
   <div>
-    <AppHeading>店舗検索</AppHeading>
-    <div class="text-xs text-slate-500">エリアを選択すると、選択可能な店舗が表示されます。</div>
+    <AppHeading level="1">ご希望の都道府県を選んで下さい</AppHeading>
 
-    <div class="grid grid-cols-1 gap-8">
+    <div class="grid grid-cols-1 gap-8 mb-16">
       <div v-for="region in regions" :key="region">
-        <AppHeading level="2">{{ region }}</AppHeading>
+        <AppHeading level="2" class="my-4 text-center">{{ region }}</AppHeading>
 
-        <ul class="grid grid-cols-3 gap-3">
-          <li v-for="prefecture of prefectures(region)" :key="`${region}-${prefecture}`" class="block text-center">
+        <div class="grid grid-cols-3 gap-3">
+          <div v-for="prefecture of prefectures(region)" :key="`${region}-${prefecture}`" class="block text-center">
             <AppButton @click="handleClickPrefecture(region, prefecture)"> {{ prefecture }} </AppButton>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

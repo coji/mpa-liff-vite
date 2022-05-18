@@ -11,7 +11,7 @@ const disabled = computed(() => !props.router.canBack.value)
 </script>
 
 <template>
-  <button v-bind="$attrs" :disabled="disabled" :class="{ hidden: disabled }" @click="router.back()">
+  <button v-bind="$attrs" :disabled="disabled" :class="{ invisible: disabled }" @click="router.back()">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
       <path
         fill-rule="evenodd"

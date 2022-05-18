@@ -2,17 +2,19 @@
 import { onMounted, ref } from "vue"
 // import Liff from "@line/liff"
 // import apps from "~/apps.json"
-
 import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
 import BackButton from "~/features/router/components/BackButton.vue"
 
+import AppHeading from "./components/AppHeading.vue"
 import type { Selection } from "./interfaces/model"
 import { useShopListQuery } from "./hooks/useShopListMaster"
 import PrefecturePage from "./pages/PrefecturePage.vue"
 import ShopPage from "./pages/ShopPage.vue"
+import MemberPage from "./pages/MemberPage.vue"
 import SchedulePage from "./pages/SchedulePage.vue"
+import ConfirmPage from "./pages/ConfirmPage.vue"
 
-const router = useLinearRouter({ routing: ["prefecture", "shop", "schedule", "done"] })
+const router = useLinearRouter({ routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"] })
 
 onMounted(async () => {
   /*
@@ -36,16 +38,18 @@ const selection = ref<Selection>({
 })
 
 const handleSelectPrefecture = ({ region, prefecture }: { region: string; prefecture: string }) => {
-  if (selection.value.prefecture !== prefecture) {
-    selection.value.shop = "" // バックで戻ってきたとき別の都道府県を選択したら店舗選択をリセット
-  }
+  if (selection.value.prefecture !== prefecture) selection.value.shop = "" // バックで戻ってきたとき別の都道府県を選択したら店舗選択をリセット
   selection.value.region = region
   selection.value.prefecture = prefecture
   router.next()
 }
 
-const handleSelectShop = ({ shop, member }: { shop: string; member: string }) => {
+const handleSelectShop = ({ shop }: { shop: string }) => {
   selection.value.shop = shop
+  router.next()
+}
+
+const handleSelectMember = ({ member }: { member: string }) => {
   selection.value.member = member
   router.next()
 }
@@ -54,7 +58,10 @@ const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: stri
   selection.value.firstChoice = firstChoice
   selection.value.secondChoice = secondChoice
   router.next()
-  console.log("schedule choiced", firstChoice, secondChoice)
+}
+
+const handleConfirmNext = () => {
+  router.next()
 }
 </script>
 
@@ -73,32 +80,18 @@ const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: stri
         @select="handleSelectShop"
       />
 
+      <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
+
       <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleScheduleChoice" />
 
-      <div v-if="router.current.value === 'done'">
-        <h1 class="text-xl font-bold text-pink-400">開発テスト表示: 以下の内容で登録されます。</h1>
-        <div class="p-8 text-center bg-slate-200">
-          <div class="mx-auto shadow stats stats-vertical">
-            <div class="stat">
-              <div class="stat-title">希望店舗</div>
-              <div class="stat-value">{{ selection.shop }}</div>
-            </div>
+      <ConfirmPage
+        v-if="router.current.value === 'confirm'"
+        :selection="selection"
+        @next="handleConfirmNext"
+      ></ConfirmPage>
 
-            <div class="stat">
-              <div class="stat-title">人数</div>
-              <div class="stat-value">{{ selection.member }}</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat-title">第１希望日時</div>
-              <div class="stat-value">{{ selection.firstChoice }}</div>
-            </div>
-            <div class="stat">
-              <div class="stat-title">第２希望日時</div>
-              <div class="stat-value">{{ selection.secondChoice }}</div>
-            </div>
-          </div>
-        </div>
+      <div v-if="router.current.value === 'done'" class="text-center">
+        <AppHeading level="1" class="mt-32 text-center">予約が完了しました。</AppHeading>
       </div>
     </div>
   </div>
