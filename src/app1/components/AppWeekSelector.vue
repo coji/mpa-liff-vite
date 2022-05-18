@@ -2,7 +2,7 @@
 import { ref, computed } from "vue"
 import dayjs from "~/utils/dayjs"
 
-const props = defineProps<{
+defineProps<{
   name: string
 }>()
 
