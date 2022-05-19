@@ -66,7 +66,7 @@ const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: stri
 // 予約登録
 const handleConfirmRegister = () => {
   // ここで登録処理を行う
-  sendMessageMutate("以下の内容で予約します\n\n" + JSON.stringify(selection.value, null, 2))
+  sendMessageMutate("以下の内容で予約しました\n\n" + JSON.stringify(selection.value, null, 2))
   router.next()
 }
 </script>
