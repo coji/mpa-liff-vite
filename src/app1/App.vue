@@ -16,7 +16,8 @@ import MemberPage from "./pages/MemberPage.vue"
 import SchedulePage from "./pages/SchedulePage.vue"
 import ConfirmPage from "./pages/ConfirmPage.vue"
 
-const { useLiffData } = useLiff(apps.app1.liffId.development)
+const { useLiffData, useSendMessageMutation } = useLiff(apps.app1.liffId.development)
+const { mutate: sendMessageMutate } = useSendMessageMutation()
 const liffData = useLiffData()
 
 const router = useLinearRouter({
@@ -65,6 +66,7 @@ const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: stri
 // 予約登録
 const handleConfirmRegister = () => {
   // ここで登録処理を行う
+  sendMessageMutate("以下の内容で予約します\n\n" + JSON.stringify(selection.value, null, 2))
   router.next()
 }
 </script>

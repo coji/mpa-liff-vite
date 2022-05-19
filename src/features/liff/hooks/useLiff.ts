@@ -74,7 +74,7 @@ export const useLiff = (liffId: string) => {
     )
   }
 
-  const sendMessages = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
+  const useSendMessageMutation = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
 
   const login = () => liff.login()
   const logout = () => liff.logout()
@@ -84,7 +84,7 @@ export const useLiff = (liffId: string) => {
     isInit,
     isLoggedIn,
     useLiffData,
-    sendMessages,
+    useSendMessageMutation,
     login,
     logout,
     closeWindow
