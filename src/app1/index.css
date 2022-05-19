@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --brand-color-dark: rgb(234, 97, 117);
+  --brand-color-light: rgb(233, 152, 188);
+}

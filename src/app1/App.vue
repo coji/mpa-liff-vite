@@ -67,7 +67,8 @@ const handleConfirmRegister = () => {
   <div id="top" class="relative min-h-screen">
     <RouterBackButton
       :router="router"
-      class="absolute top-0 left-2 text-pink-400 hover:text-pink-600"
+      class="absolute top-0 left-2"
+      style="color: var(--brand-color-dark)"
       :disabled="isBackDisabled"
     />
 

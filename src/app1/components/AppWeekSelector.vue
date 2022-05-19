@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect } from "vue"
 import dayjs from "~/utils/dayjs"
+import AppCheckMark from "./AppCheckMark.vue"
 
 const props = defineProps<{
   modelValue?: string
@@ -35,7 +36,8 @@ const timeSlots = [
 <template>
   <div class="flex justify-between">
     <button
-      class="bg-pink-400 hover:bg-pink-600 rounded-none border-none btn btn-sm"
+      class="rounded-none border-none btn btn-sm"
+      :style="{ 'background-color': startAt === 0 ? undefined : 'var(--brand-color-light)' }"
       :disabled="startAt === 0"
       @click="startAt = 0"
     >
@@ -52,7 +54,8 @@ const timeSlots = [
       前の7日
     </button>
     <button
-      class="bg-pink-400 hover:bg-pink-600 rounded-none border-none btn btn-sm"
+      class="rounded-none border-none btn btn-sm"
+      :style="{ 'background-color': startAt === 7 ? undefined : 'var(--brand-color-light)' }"
       :disabled="startAt === 7"
       @click="startAt = 7"
     >

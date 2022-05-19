@@ -40,12 +40,12 @@ const handleClickNext = () => {
     <AppHeading level="1">ご希望の日時を選択してください</AppHeading>
 
     <AppStack gap="2">
-      <AppHeading level="2">第1希望</AppHeading>
+      <AppHeading level="2" style="color: var(--brand-color-light)">第1希望</AppHeading>
       <AppWeekSelector v-model="firstChoice" name="firstChoice" />
     </AppStack>
 
     <AppStack gap="2">
-      <AppHeading level="2">第2希望</AppHeading>
+      <AppHeading level="2" style="color: var(--brand-color-light)">第2希望</AppHeading>
       <AppWeekSelector v-model="secondChoice" name="secondChoice" />
     </AppStack>
 

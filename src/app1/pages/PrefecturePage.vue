@@ -23,7 +23,7 @@ const handleClickPrefecture = (region: string, prefecture: string) => {
 
     <AppStack gap="4">
       <div v-for="region in regions" :key="region">
-        <AppHeading level="2" class="my-2">{{ region }}</AppHeading>
+        <AppHeading level="2" class="my-2" style="color: var(--brand-color-dark)">{{ region }}</AppHeading>
 
         <div class="grid grid-cols-3 gap-3">
           <div v-for="prefecture of prefectures(region)" :key="`${region}-${prefecture}`" class="block text-center">
