@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
-import type { useLinearRouter } from "../hooks/useLinearRouter"
+import type { LinearRouter } from "../hooks/useLinearRouter"
 
-type LinearRouter = ReturnType<typeof useLinearRouter>
 const props = defineProps<{
   router: LinearRouter
 }>()

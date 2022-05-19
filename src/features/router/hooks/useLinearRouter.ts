@@ -1,6 +1,7 @@
 import { ref, computed } from "vue"
 
 export type RouteDefinition = string[]
+export type LinearRouter = ReturnType<typeof useLinearRouter>
 
 // LIFF用の簡易な一方向ルーター
 export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
