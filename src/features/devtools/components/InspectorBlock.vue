@@ -22,10 +22,10 @@ const handleClickCopy = async (text: string) => {
   <div>
     <div class="flex items-center text-sm font-bold capitalize">
       <div class="flex-1">{{ inspectionKey }}</div>
-      <div
+      <button
         class="py-0 my-1 text-xs btn btn-xs"
         :class="{ 'text-slate-400': !isCopied, 'text-slate-100': isCopied }"
-        @click.stop="handleClickCopy(json)"
+        @click="handleClickCopy(json)"
       >
         <svg
           v-if="isCopied"
@@ -59,12 +59,10 @@ const handleClickCopy = async (text: string) => {
         </svg>
         <span v-if="isCopied">Copied</span>
         <span v-else>Copy</span>
-      </div>
+      </button>
     </div>
     <div
       class="overflow-auto p-2 max-h-40 text-xs whitespace-pre bg-slate-900/70 rounded-md border border-white cursor-auto"
-      @click.stop
-      @touchmove.stop
     >
       {{ json }}
     </div>
