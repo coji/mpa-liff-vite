@@ -5,7 +5,7 @@ import RouterBackButton from "~/features/router/components/RouterBackButton.vue"
 import apps from "~/apps.config.json"
 import { useLiff } from "~/features/liff/hooks/useLiff"
 
-import AppDevtools from "./components/AppDevtools.vue"
+import DevtoolPanel from "~/features/devtools/components/DevtoolPanel.vue"
 import AppHeading from "./components/AppHeading.vue"
 import type { Selection, ShopListMaster } from "./interfaces/model"
 import shoplist from "./assets/master.json"
@@ -100,7 +100,7 @@ const handleConfirmRegister = () => {
       </div>
     </div>
 
-    <AppDevtools
+    <DevtoolPanel
       :inspection="{
         selection,
         liffData: liffData.data.value as object
