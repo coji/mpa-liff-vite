@@ -22,7 +22,10 @@ onMounted(() => {
 
   const searchParams = new URLSearchParams(window.location.search)
   params.value = paramsToObject(searchParams)
-  isEnabled.value = searchParams.get("debug") === "1" // debug=1 で有効に
+  if (searchParams.get("debug") === "1") {
+    isEnabled.value = true
+    console.log("Debug inspector enabled")
+  } // debug=1 で有効に
 })
 </script>
 

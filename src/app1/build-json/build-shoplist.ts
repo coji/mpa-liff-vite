@@ -36,7 +36,7 @@ const main = async () => {
 
   // master.json として保存
   const dirname = path.dirname(url.fileURLToPath(new URL(import.meta.url)))
-  const masterFilePath = path.resolve(dirname, "../assets/master.json")
+  const masterFilePath = path.resolve(dirname, "../assets/shoplist.json")
   fs.writeFileSync(masterFilePath, JSON.stringify(master, null, 2))
 }
 

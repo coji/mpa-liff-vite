@@ -8,7 +8,7 @@ import { useLiff } from "~/features/liff/hooks/useLiff"
 import DevtoolPanel from "~/features/devtools/components/DevtoolPanel.vue"
 import AppHeading from "./components/AppHeading.vue"
 import type { Selection, ShopListMaster } from "./interfaces/model"
-import shoplist from "./assets/master.json"
+import shoplist from "./assets/shoplist.json"
 
 import PrefecturePage from "./pages/PrefecturePage.vue"
 import ShopPage from "./pages/ShopPage.vue"

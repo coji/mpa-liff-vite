@@ -4,7 +4,7 @@
       "development": "1657135191-kXP5wKG9",
       "production": "production app1 liff id here"
     },
-    "prepare": "build-json.ts"
+    "buildJson": "build-shoplist.ts"
   },
   "app2": {
     "liffId": {
