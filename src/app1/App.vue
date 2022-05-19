@@ -3,6 +3,7 @@ import { ref, computed } from "vue"
 import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
 import RouterBackButton from "~/features/router/components/RouterBackButton.vue"
 
+import AppDevtools from "./components/AppDevtools.vue"
 import AppHeading from "./components/AppHeading.vue"
 import type { Selection, ShopListMaster } from "./interfaces/model"
 import shoplist from "./assets/master.json"
@@ -93,5 +94,7 @@ const handleConfirmRegister = () => {
         <AppHeading level="1" class="mt-32 text-center">予約が完了しました。</AppHeading>
       </div>
     </div>
+
+    <AppDevtools />
   </div>
 </template>
