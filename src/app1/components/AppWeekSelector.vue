@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect } from "vue"
 import dayjs from "~/utils/dayjs"
-import AppCheckMark from "./AppCheckMark.vue"
 
 const props = defineProps<{
   modelValue?: string
@@ -31,6 +30,9 @@ const timeSlots = [
   { startAt: "18:00", endAt: "20:00" },
   { startAt: "19:00", endAt: "21:00" }
 ]
+
+const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
+  `${day.format("YYYY/MM/DD(ddd)")}${startAt}〜${endAt}`
 </script>
 
 <template>
@@ -98,19 +100,65 @@ const timeSlots = [
       <div
         v-for="(day, dayIndex) of days"
         :key="day.toString()"
-        class="flex justify-center items-center py-2 leading-4 border"
+        class="flex relative items-stretch leading-4 border"
+        :style="{
+          'background-color': choice === choiceFormat(day, slot.startAt, slot.endAt) ? 'var(--brand-color-dark)' : ''
+        }"
       >
         <input
-          :id="`t1-first-choice-${slotIndex}-${dayIndex}`"
+          :id="`t1-${name}-${slotIndex}-${dayIndex}`"
           v-model="choice"
           type="radio"
           :name="name"
-          class="checked:text-blue-500 w-30"
-          :value="`${day.format('YYYY/MM/DD(ddd)')}${slot.startAt}〜${slot.endAt}`"
-          :checked="choice === `${day.format('YYYY/MM/DD(ddd)')}${slot.startAt}〜${slot.endAt}`"
+          class="hidden checked:text-blue-500 w-30"
+          :value="choiceFormat(day, slot.startAt, slot.endAt)"
+          :checked="choice === choiceFormat(day, slot.startAt, slot.endAt)"
         />
-        <label :for="`t1-first-choice-${slotIndex}-${dayIndex}`"></label>
+        <label class="flex flex-1 justify-center items-center" :for="`t1-${name}-${slotIndex}-${dayIndex}`"> </label>
       </div>
     </template>
   </div>
 </template>
+
+<style scoped>
+input[type="radio"] + label:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: solid 2px #d24b6d;
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  border-radius: 100%;
+}
+
+input[type="radio"]:checked + label:before {
+  border: solid 2px #ffffff;
+}
+
+input[type="radio"]:checked + label:after {
+  content: "";
+  width: 5px;
+  height: 10px;
+  border-right: solid 2px #ffffff;
+  border-bottom: solid 2px #ffffff;
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -2.5px;
+  margin-top: -5px;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+</style>
