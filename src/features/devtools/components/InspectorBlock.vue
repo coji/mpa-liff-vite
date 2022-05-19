@@ -63,6 +63,7 @@ const handleClickCopy = async (text: string) => {
     </div>
     <div
       class="overflow-auto p-2 max-h-40 text-xs whitespace-pre bg-slate-900/70 rounded-md border border-white cursor-auto"
+      @touch.stop
     >
       {{ json }}
     </div>
