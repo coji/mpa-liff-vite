@@ -31,10 +31,13 @@ onMounted(() => {
     v-if="isEnabled"
     class="inline-block fixed"
     :class="{ 'bottom-0': isOpen, 'bottom-2': !isOpen, 'left-0': isOpen, 'left-2': !isOpen, 'right-0': isOpen }"
-    @click.stop
-    @touch.stop
   >
-    <div v-if="isOpen" class="grid overflow-scroll grid-cols-1 gap-4 p-4 h-2/5 text-white bg-slate-900/90">
+    <div
+      v-if="isOpen"
+      class="grid overflow-scroll grid-cols-1 gap-4 p-4 h-2/5 text-white bg-slate-900/90"
+      @click.stop
+      @touch.stop
+    >
       <div class="flex">
         <div class="flex-1 font-bold cursor-pointer" @click="isOpen = false">Debug Inspector</div>
         <button class="btn btn-sm btn-ghost" @click="isOpen = false">
