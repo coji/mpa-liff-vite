@@ -16,8 +16,8 @@ import MemberPage from "./pages/MemberPage.vue"
 import SchedulePage from "./pages/SchedulePage.vue"
 import ConfirmPage from "./pages/ConfirmPage.vue"
 
-const { useProfile } = useLiff(apps.app1.liffId.development)
-const profile = useProfile()
+const { useLiffData } = useLiff(apps.app1.liffId.development)
+const liffData = useLiffData()
 
 const router = useLinearRouter({
   routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"]
@@ -100,6 +100,11 @@ const handleConfirmRegister = () => {
       </div>
     </div>
 
-    <AppDevtools :profile="profile.data.value" />
+    <AppDevtools
+      :inspection="{
+        selection,
+        liffData: liffData.data.value as object
+      }"
+    />
   </div>
 </template>

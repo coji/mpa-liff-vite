@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
-import { LiffProfile } from "~/features/liff/hooks/useLiff"
 
 defineProps<{
-  profile?: LiffProfile
+  inspection: { [key: string]: object }
 }>()
 
 const params = ref<object>()
@@ -32,15 +31,23 @@ onMounted(() => {
     class="inline-block fixed cursor-pointer"
     :class="{ 'bottom-0': isOpen, 'bottom-2': !isOpen, 'left-0': isOpen, 'left-2': !isOpen, 'right-0': isOpen }"
   >
-    <div v-if="isOpen" class="overflow-scroll p-4 h-64 text-xs text-white bg-slate-800/80" @click="isOpen = false">
-      <div class="font-bold">URL Parameters</div>
-      <div class="overflow-scroll p-1 whitespace-pre border border-white cursor-auto" @click.stop>
-        {{ JSON.stringify(params, null, 2) }}
+    <div
+      v-if="isOpen"
+      class="grid overflow-scroll grid-cols-1 gap-4 p-4 h-2/5 text-xs text-white bg-slate-800/80"
+      @click="isOpen = false"
+    >
+      <div>
+        <div class="font-bold">URL Parameters</div>
+        <div class="p-2 whitespace-pre rounded-md border border-white cursor-auto" @click.stop>
+          {{ JSON.stringify(params, null, 2) }}
+        </div>
       </div>
 
-      <div class="font-bold">LINE Profile</div>
-      <div class="overflow-scroll p-1 whitespace-pre border border-white cursor-auto" @click.stop>
-        {{ JSON.stringify(profile, null, 2) }}
+      <div v-for="key of Object.keys(inspection)" :key="key">
+        <div class="font-bold">{{ key }}</div>
+        <div class="p-2 whitespace-pre rounded-md border border-white cursor-auto" @click.stop>
+          {{ JSON.stringify(inspection[key], null, 2) }}
+        </div>
       </div>
     </div>
 

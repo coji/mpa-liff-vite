@@ -36,15 +36,33 @@ export const useLiff = (liffId: string) => {
     initializeLiff()
   })
 
-  const useProfile = () => {
-    const query = useQuery("liff.profile", () => liff.getProfile(), {
-      enabled: isLoggedIn,
-      onError: (err) => err
-    })
-    return { ...query }
-  }
+  // Liff で取得できるデータ全部とる
+  const useLiffData = () =>
+    useQuery(
+      ["liff.data"],
+      async () => {
+        return {
+          liffId: liffId,
+          profile: await liff.getProfile(),
+          accessToken: liff.getAccessToken(),
+          idToken: liff.getIDToken(),
+          decodedIdToken: liff.getDecodedIDToken(),
+          context: liff.getContext(),
+          friendship: await liff.getFriendship(),
+          os: liff.getOS(),
+          language: liff.getLanguage(),
+          liffSdkVersion: liff.getVersion(),
+          lineVersion: liff.getLineVersion(),
+          isInClient: liff.isInClient(),
+          isVideoAutoPlay: liff.getIsVideoAutoPlay(),
+          isSubWindow: liff.isSubWindow(),
+          advertisingId: liff.getAdvertisingId && (await liff.getAdvertisingId())
+        }
+      },
+      { enabled: isLoggedIn.value }
+    )
 
-  const useSendMessages = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
+  const sendMessages = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
 
   const login = () => liff.login()
   const logout = () => liff.logout()
@@ -53,8 +71,8 @@ export const useLiff = (liffId: string) => {
   return {
     isInit,
     isLoggedIn,
-    useProfile,
-    useSendMessages,
+    useLiffData,
+    sendMessages,
     login,
     logout,
     closeWindow
