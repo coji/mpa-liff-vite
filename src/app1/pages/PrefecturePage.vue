@@ -2,7 +2,7 @@
 import { computed } from "vue"
 import AppHeading from "../components/AppHeading.vue"
 import AppButton from "../components/AppButton.vue"
-import type { ShopListMaster } from "../hooks/useShopListMaster"
+import type { ShopListMaster } from "../interfaces/model"
 
 const props = defineProps<{ shoplist: ShopListMaster }>()
 const regions = computed(() => Object.keys(props.shoplist))

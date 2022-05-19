@@ -3,7 +3,8 @@
     "liffId": {
       "development": "development app1 liff id here",
       "production": "production app1 liff id here"
-    }
+    },
+    "prepare": "build-json.ts"
   },
   "app2": {
     "liffId": {

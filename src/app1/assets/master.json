@@ -1,0 +1,383 @@
+{
+  "関東": {
+    "東京": [
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "銀座店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "渋谷店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "立川店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "北千住西口店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "町田店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "新宿総本店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "池袋東口店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "東京",
+        "name": "TOKYOプレミアム店\n(門前仲町)"
+      }
+    ],
+    "神奈川": [
+      {
+        "region": "関東",
+        "prefecture": "神奈川",
+        "name": "横浜西口店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "神奈川",
+        "name": "川崎駅前店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "神奈川",
+        "name": "本厚木店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "神奈川",
+        "name": "湘南藤沢店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "神奈川",
+        "name": "横須賀中央店"
+      }
+    ],
+    "千葉": [
+      {
+        "region": "関東",
+        "prefecture": "千葉",
+        "name": "柏店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "千葉",
+        "name": "千葉店"
+      }
+    ],
+    "埼玉": [
+      {
+        "region": "関東",
+        "prefecture": "埼玉",
+        "name": "新越谷店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "埼玉",
+        "name": "大宮東口店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "埼玉",
+        "name": "所沢店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "埼玉",
+        "name": "川越店"
+      },
+      {
+        "region": "関東",
+        "prefecture": "埼玉",
+        "name": "熊谷店"
+      }
+    ],
+    "群馬": [
+      {
+        "region": "関東",
+        "prefecture": "群馬",
+        "name": "高崎店"
+      }
+    ]
+  },
+  "北海道・東北": {
+    "北海道": [
+      {
+        "region": "北海道・東北",
+        "prefecture": "北海道",
+        "name": "札幌大通店"
+      },
+      {
+        "region": "北海道・東北",
+        "prefecture": "北海道",
+        "name": "札幌駅前店"
+      },
+      {
+        "region": "北海道・東北",
+        "prefecture": "北海道",
+        "name": "旭川店"
+      },
+      {
+        "region": "北海道・東北",
+        "prefecture": "北海道",
+        "name": "帯広店"
+      }
+    ],
+    "青森": [
+      {
+        "region": "北海道・東北",
+        "prefecture": "青森",
+        "name": "青森店"
+      },
+      {
+        "region": "北海道・東北",
+        "prefecture": "青森",
+        "name": "八戸店"
+      }
+    ],
+    "岩手": [
+      {
+        "region": "北海道・東北",
+        "prefecture": "岩手",
+        "name": "盛岡店"
+      }
+    ],
+    "宮城": [
+      {
+        "region": "北海道・東北",
+        "prefecture": "宮城",
+        "name": "仙台一番町店"
+      }
+    ],
+    "秋田": [
+      {
+        "region": "北海道・東北",
+        "prefecture": "秋田",
+        "name": "秋田店"
+      }
+    ],
+    "福島": [
+      {
+        "region": "北海道・東北",
+        "prefecture": "福島",
+        "name": "いわき店"
+      }
+    ]
+  },
+  "中部": {
+    "新潟": [
+      {
+        "region": "中部",
+        "prefecture": "新潟",
+        "name": "新潟店"
+      }
+    ],
+    "石川": [
+      {
+        "region": "中部",
+        "prefecture": "石川",
+        "name": "金沢店"
+      }
+    ],
+    "静岡": [
+      {
+        "region": "中部",
+        "prefecture": "静岡",
+        "name": "静岡店"
+      }
+    ],
+    "愛知": [
+      {
+        "region": "中部",
+        "prefecture": "愛知",
+        "name": "栄店"
+      },
+      {
+        "region": "中部",
+        "prefecture": "愛知",
+        "name": "名駅店"
+      }
+    ],
+    "長野": [
+      {
+        "region": "中部",
+        "prefecture": "長野",
+        "name": "松本店"
+      }
+    ]
+  },
+  "近畿": {
+    "大阪": [
+      {
+        "region": "近畿",
+        "prefecture": "大阪",
+        "name": "梅田店"
+      },
+      {
+        "region": "近畿",
+        "prefecture": "大阪",
+        "name": "天王寺店"
+      },
+      {
+        "region": "近畿",
+        "prefecture": "大阪",
+        "name": "心斎橋店"
+      },
+      {
+        "region": "近畿",
+        "prefecture": "大阪",
+        "name": "堺東店"
+      }
+    ],
+    "京都": [
+      {
+        "region": "近畿",
+        "prefecture": "京都",
+        "name": "京都河原町店"
+      }
+    ],
+    "兵庫": [
+      {
+        "region": "近畿",
+        "prefecture": "兵庫",
+        "name": "神戸三宮店"
+      },
+      {
+        "region": "近畿",
+        "prefecture": "兵庫",
+        "name": "姫路店"
+      }
+    ],
+    "和歌山": [
+      {
+        "region": "近畿",
+        "prefecture": "和歌山",
+        "name": "パームシティ和歌山店"
+      }
+    ]
+  },
+  "中国・四国": {
+    "広島": [
+      {
+        "region": "中国・四国",
+        "prefecture": "広島",
+        "name": "広島店"
+      }
+    ],
+    "岡山": [
+      {
+        "region": "中国・四国",
+        "prefecture": "岡山",
+        "name": "岡山店"
+      }
+    ],
+    "島根": [
+      {
+        "region": "中国・四国",
+        "prefecture": "島根",
+        "name": "松江店"
+      }
+    ],
+    "山口": [
+      {
+        "region": "中国・四国",
+        "prefecture": "山口",
+        "name": "山口店"
+      }
+    ],
+    "愛媛": [
+      {
+        "region": "中国・四国",
+        "prefecture": "愛媛",
+        "name": "松山店"
+      }
+    ],
+    "高知": [
+      {
+        "region": "中国・四国",
+        "prefecture": "高知",
+        "name": "高知店"
+      }
+    ]
+  },
+  "九州・沖縄": {
+    "福岡": [
+      {
+        "region": "九州・沖縄",
+        "prefecture": "福岡",
+        "name": "福岡天神店"
+      },
+      {
+        "region": "九州・沖縄",
+        "prefecture": "福岡",
+        "name": "博多駅前店"
+      },
+      {
+        "region": "九州・沖縄",
+        "prefecture": "福岡",
+        "name": "小倉店"
+      }
+    ],
+    "長崎": [
+      {
+        "region": "九州・沖縄",
+        "prefecture": "長崎",
+        "name": "長崎店"
+      }
+    ],
+    "大分": [
+      {
+        "region": "九州・沖縄",
+        "prefecture": "大分",
+        "name": "大分店"
+      }
+    ],
+    "熊本": [
+      {
+        "region": "九州・沖縄",
+        "prefecture": "熊本",
+        "name": "熊本店"
+      }
+    ],
+    "鹿児島": [
+      {
+        "region": "九州・沖縄",
+        "prefecture": "鹿児島",
+        "name": "鹿児島店"
+      }
+    ],
+    "沖縄": [
+      {
+        "region": "九州・沖縄",
+        "prefecture": "沖縄",
+        "name": "那覇新都心店"
+      },
+      {
+        "region": "九州・沖縄",
+        "prefecture": "沖縄",
+        "name": "北谷店"
+      },
+      {
+        "region": "九州・沖縄",
+        "prefecture": "沖縄",
+        "name": "名護店"
+      }
+    ]
+  }
+}

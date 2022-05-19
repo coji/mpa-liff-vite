@@ -1,3 +1,9 @@
+export interface ShopListMaster {
+  [region: string]: {
+    [prefecture: string]: Shop[]
+  }
+}
+
 export interface Shop {
   region: string
   prefecture: string

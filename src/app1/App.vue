@@ -6,8 +6,8 @@ import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
 import BackButton from "~/features/router/components/BackButton.vue"
 
 import AppHeading from "./components/AppHeading.vue"
-import type { Selection } from "./interfaces/model"
-import { useShopListQuery } from "./hooks/useShopListMaster"
+import type { Selection, ShopListMaster } from "./interfaces/model"
+import shoplist from "./assets/master.json"
 import PrefecturePage from "./pages/PrefecturePage.vue"
 import ShopPage from "./pages/ShopPage.vue"
 import MemberPage from "./pages/MemberPage.vue"
@@ -28,7 +28,7 @@ onMounted(async () => {
   */
 })
 
-const { data } = useShopListQuery()
+const data: ShopListMaster = shoplist
 
 const selection = ref<Selection>({
   region: "",
@@ -74,9 +74,9 @@ const handleConfirmNext = () => {
 
 <template>
   <div class="min-h-screen">
-    <BackButton :router="router" class="text-pink-400 hover:text-pink-600" />
+    <div v-if="data" class="relative m-4">
+      <BackButton :router="router" class="absolute top-0 left-0 text-pink-400 hover:text-pink-600" />
 
-    <div v-if="data" class="m-4">
       <PrefecturePage v-if="router.current.value === 'prefecture'" :shoplist="data" @select="handleSelectPrefecture" />
 
       <ShopPage
