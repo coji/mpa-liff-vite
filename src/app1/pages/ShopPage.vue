@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppHeading from "../components/AppHeading.vue"
+import AppStack from "../components/AppStack.vue"
 import AppButton from "../components/AppButton.vue"
 import type { Selection, Shop } from "../interfaces/model"
 
@@ -18,7 +19,7 @@ const handleClickShop = (name: string) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-8">
+  <AppStack>
     <AppHeading level="1">ご希望の店舗を選択してください</AppHeading>
 
     <div class="grid grid-cols-1 gap-3">
@@ -26,5 +27,5 @@ const handleClickShop = (name: string) => {
         <AppButton class="w-full" name="shop" @click="handleClickShop(shop.name)">{{ shop.name }}</AppButton>
       </div>
     </div>
-  </div>
+  </AppStack>
 </template>

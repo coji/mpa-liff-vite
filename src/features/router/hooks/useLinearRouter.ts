@@ -11,6 +11,7 @@ export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
   // 次へ
   const next = () => {
     if (routing.length > current.value + 1) {
+      window.scrollTo({ top: 0 })
       history.value.push(routing[current.value])
       current.value++
     }
@@ -20,6 +21,7 @@ export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
   // 戻る
   const back = () => {
     if (current.value > 0) {
+      window.scrollTo({ top: 0 })
       history.value.push(routing[current.value])
       current.value--
     }

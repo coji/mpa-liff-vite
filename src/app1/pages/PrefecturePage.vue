@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import AppHeading from "../components/AppHeading.vue"
+import AppStack from "../components/AppStack.vue"
 import AppButton from "../components/AppButton.vue"
 import type { ShopListMaster } from "../interfaces/model"
 
@@ -17,12 +18,12 @@ const handleClickPrefecture = (region: string, prefecture: string) => {
 </script>
 
 <template>
-  <div>
+  <AppStack>
     <AppHeading level="1">ご希望の都道府県を選んで下さい</AppHeading>
 
-    <div class="grid grid-cols-1 gap-8 mb-16">
+    <AppStack gap="4">
       <div v-for="region in regions" :key="region">
-        <AppHeading level="2" class="my-4 text-center">{{ region }}</AppHeading>
+        <AppHeading level="2" class="my-2">{{ region }}</AppHeading>
 
         <div class="grid grid-cols-3 gap-3">
           <div v-for="prefecture of prefectures(region)" :key="`${region}-${prefecture}`" class="block text-center">
@@ -30,6 +31,6 @@ const handleClickPrefecture = (region: string, prefecture: string) => {
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </AppStack>
+  </AppStack>
 </template>

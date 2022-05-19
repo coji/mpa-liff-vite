@@ -1,7 +1,7 @@
 import { resolve } from "path"
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-import apps from "./src/apps.json"
+import apps from "./src/apps.config.json"
 
 const root = resolve(__dirname, "src")
 const outDir = resolve(__dirname, "dist")

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
-// import Liff from "@line/liff"
-// import apps from "~/apps.json"
+import { ref, computed } from "vue"
 import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
-import BackButton from "~/features/router/components/BackButton.vue"
+import RouterBackButton from "~/features/router/components/RouterBackButton.vue"
 
 import AppHeading from "./components/AppHeading.vue"
 import type { Selection, ShopListMaster } from "./interfaces/model"
 import shoplist from "./assets/master.json"
+
 import PrefecturePage from "./pages/PrefecturePage.vue"
 import ShopPage from "./pages/ShopPage.vue"
 import MemberPage from "./pages/MemberPage.vue"
@@ -17,16 +16,7 @@ import ConfirmPage from "./pages/ConfirmPage.vue"
 const router = useLinearRouter({
   routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"]
 })
-
-onMounted(async () => {
-  /*
-  liff.value = await Liff.init({
-    liffId: (apps.app2.liffId as any)[import.meta.env.MODE],
-  }).catch((e) => e)
-
-  if (!liff.value) alert('liff init failed!')
-  */
-})
+const isBackDisabled = computed(() => router.current.value === "prefecture" || router.current.value === "done")
 
 const data: ShopListMaster = shoplist
 
@@ -66,17 +56,22 @@ const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: stri
   router.next()
 }
 
-const handleConfirmNext = () => {
-  // ここで予約登録
+// 予約登録
+const handleConfirmRegister = () => {
+  // ここで登録処理を行う
   router.next()
 }
 </script>
 
 <template>
-  <div class="min-h-screen">
-    <div v-if="data" class="relative m-4">
-      <BackButton :router="router" class="absolute top-0 left-0 text-pink-400 hover:text-pink-600" />
+  <div id="top" class="relative min-h-screen">
+    <RouterBackButton
+      :router="router"
+      class="absolute top-0 left-2 text-pink-400 hover:text-pink-600"
+      :disabled="isBackDisabled"
+    />
 
+    <div class="m-4">
       <PrefecturePage v-if="router.current.value === 'prefecture'" :shoplist="data" @select="handleSelectPrefecture" />
 
       <ShopPage
@@ -91,11 +86,7 @@ const handleConfirmNext = () => {
 
       <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleSelectSchedule" />
 
-      <ConfirmPage
-        v-if="router.current.value === 'confirm'"
-        :selection="selection"
-        @next="handleConfirmNext"
-      ></ConfirmPage>
+      <ConfirmPage v-if="router.current.value === 'confirm'" :selection="selection" @next="handleConfirmRegister" />
 
       <div v-if="router.current.value === 'done'" class="text-center">
         <AppHeading level="1" class="mt-32 text-center">予約が完了しました。</AppHeading>

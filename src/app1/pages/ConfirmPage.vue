@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppHeading from "../components/AppHeading.vue"
+import AppStack from "../components/AppStack.vue"
 import AppNextButton from "../components/AppNextButton.vue"
 import type { Selection } from "../interfaces/model"
 
@@ -17,10 +18,10 @@ const handleClickNext = () => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-8">
+  <AppStack>
     <AppHeading level="1">以下の内容で予約します</AppHeading>
 
-    <div class="grid grid-cols-3 gap-2">
+    <div class="grid grid-cols-3 gap-1">
       <div class="p-2 font-bold text-right bg-gray-100">希望店舗</div>
       <div class="col-span-2 p-2">{{ selection.shop }}</div>
 
@@ -35,5 +36,5 @@ const handleClickNext = () => {
     </div>
 
     <AppNextButton @click="handleClickNext()"> 予約完了 </AppNextButton>
-  </div>
+  </AppStack>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue"
 import AppHeading from "../components/AppHeading.vue"
+import AppStack from "../components/AppStack.vue"
 import AppNextButton from "../components/AppNextButton.vue"
 import AppWeekSelector from "../components/AppWeekSelector.vue"
 import AppWarning from "../components/AppWarning.vue"
@@ -35,23 +36,21 @@ const handleClickNext = () => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-8">
-    <div class="grid grid-cols-1 gap-4">
-      <div>
-        <AppHeading level="1">第1希望</AppHeading>
-      </div>
-      <AppWeekSelector v-model="firstChoice" name="firstChoice" />
-    </div>
+  <AppStack>
+    <AppHeading level="1">ご希望の日時を選択してください</AppHeading>
 
-    <div class="grid grid-cols-1 gap-4">
-      <div>
-        <AppHeading level="1">第2希望</AppHeading>
-      </div>
+    <AppStack gap="2">
+      <AppHeading level="2">第1希望</AppHeading>
+      <AppWeekSelector v-model="firstChoice" name="firstChoice" />
+    </AppStack>
+
+    <AppStack gap="2">
+      <AppHeading level="2">第2希望</AppHeading>
       <AppWeekSelector v-model="secondChoice" name="secondChoice" />
-    </div>
+    </AppStack>
 
     <AppWarning v-if="isError">第1希望、第2希望両方の選択が必要です。</AppWarning>
 
     <AppNextButton @click="handleClickNext()"> 予約確認 </AppNextButton>
-  </div>
+  </AppStack>
 </template>

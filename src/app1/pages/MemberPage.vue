@@ -2,6 +2,7 @@
 import { ref, watchEffect } from "vue"
 import AppHeading from "../components/AppHeading.vue"
 import AppButton from "../components/AppButton.vue"
+import AppStack from "../components/AppStack.vue"
 import type { Selection } from "../interfaces/model"
 
 const props = defineProps<{
@@ -26,7 +27,7 @@ const handleClickMember = (member: string) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-8">
+  <AppStack>
     <AppHeading level="1">ご来店人数を選択してください</AppHeading>
 
     <div class="grid grid-cols-1 gap-3">
@@ -34,5 +35,5 @@ const handleClickMember = (member: string) => {
         {{ i }}名
       </AppButton>
     </div>
-  </div>
+  </AppStack>
 </template>

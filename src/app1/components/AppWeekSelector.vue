@@ -70,24 +70,26 @@ const timeSlots = [
     </button>
   </div>
 
-  <div class="grid grid-cols-8 w-full text-center">
+  <div class="grid w-full text-center" style="grid-template-columns: 3.25rem repeat(7, minmax(0, 1fr))">
     <!-- 日付行 -->
     <div class="bg-gray-100 border">&nbsp;</div>
     <div
       v-for="day of days"
       :key="day.toString()"
-      class="py-2 leading-5 bg-gray-100 border"
+      class="py-2 text-sm leading-5 bg-gray-100 border"
       :class="{
         'text-red-500': day.day() === 0,
         'text-blue-500': day.day() === 6
       }"
     >
       <div>{{ day.format("M/D") }}</div>
-      <div>{{ day.format("(ddd)") }}</div>
+      <div>
+        <small>{{ day.format("(ddd)") }}</small>
+      </div>
     </div>
 
     <template v-for="(slot, slotIndex) of timeSlots" :key="slot.startAt">
-      <div class="flex justify-center items-center py-2 font-bold leading-4 border text-2xs">
+      <div class="flex justify-center items-center py-2 font-semibold leading-4 border text-2xs">
         {{ slot.startAt }}〜<br />{{ slot.endAt }}
       </div>
       <div

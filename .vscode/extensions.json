@@ -3,6 +3,9 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "Vue.volar",
+    "bradlc.vscode-tailwindcss",
+    "csstools.postcss",
+    "formulahendry.auto-rename-tag",
 
     "yzhang.markdown-all-in-one",
     "silvenon.mdx",
