@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@line/liff': ^2.19.1
+  '@line/liff-mock': ^1.0.1
   '@swc/core': ^1.2.186
   '@swc/wasm': ^1.2.186
   '@tailwindcss/typography': ^0.5.2
@@ -35,6 +36,7 @@ specifiers:
 
 dependencies:
   '@line/liff': 2.19.1
+  '@line/liff-mock': 1.0.1_@line+liff@2.19.1
   daisyui: 2.15.0_ovlr6cloezumfb4pgkj4wjmjky
   dayjs: 1.11.2
   got: 12.0.4
@@ -655,6 +657,14 @@ packages:
     transitivePeerDependencies:
       - debug
       - supports-color
+    dev: false
+
+  /@line/liff-mock/1.0.1_@line+liff@2.19.1:
+    resolution: {integrity: sha512-BbB41hjmDZYR6vgxOVg3pneofes5AfJRO5785jTTaUV4tRY/yspuxss6KaG3S3kmy+IU5PMCz4TC8UpMZfBWXw==}
+    peerDependencies:
+      '@line/liff': '>= 2.19.0'
+    dependencies:
+      '@line/liff': 2.19.1
     dev: false
 
   /@line/liff/2.19.1:

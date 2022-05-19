@@ -45,7 +45,7 @@ onMounted(() => {
 
       <div v-for="key of Object.keys(inspection)" :key="key">
         <div class="font-bold">{{ key }}</div>
-        <div class="p-2 whitespace-pre rounded-md border border-white cursor-auto" @click.stop>
+        <div class="overflow-auto p-2 max-h-40 whitespace-pre rounded-md border border-white cursor-auto" @click.stop>
           {{ JSON.stringify(inspection[key], null, 2) }}
         </div>
       </div>

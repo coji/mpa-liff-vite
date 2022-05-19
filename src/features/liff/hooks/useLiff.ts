@@ -1,6 +1,15 @@
-import { ref, onMounted } from "vue"
+import { ref, onMounted, computed } from "vue"
 import { useMutation, useQuery } from "vue-query"
+
 import liff from "@line/liff"
+import { LiffMockPlugin, ExtendedInit, LiffMockApi } from "@line/liff-mock"
+declare module "@line/liff" {
+  interface Liff {
+    init: ExtendedInit
+    $mock: LiffMockApi
+  }
+}
+liff.use(new LiffMockPlugin())
 
 export interface LiffProfile {
   userId: string
@@ -17,14 +26,17 @@ export const useLiff = (liffId: string) => {
     const initializeLiff = async () => {
       await liff.init(
         {
-          liffId
+          liffId,
+          mock: import.meta.env.DEV
         },
         () => {
-          console.log("liff init success")
           isInit.value = true
-          if (liff.isLoggedIn()) {
+          if (import.meta.env.DEV && !liff.isInClient()) {
+            liff.login()
             isLoggedIn.value = true
-            console.log("liff logged in")
+          }
+          if (liff.isLoggedIn() || import.meta.env.DEV) {
+            isLoggedIn.value = true
           }
         },
         () => {
@@ -37,8 +49,8 @@ export const useLiff = (liffId: string) => {
   })
 
   // Liff で取得できるデータ全部とる
-  const useLiffData = () =>
-    useQuery(
+  const useLiffData = () => {
+    return useQuery(
       ["liff.data"],
       async () => {
         return {
@@ -55,12 +67,12 @@ export const useLiff = (liffId: string) => {
           lineVersion: liff.getLineVersion(),
           isInClient: liff.isInClient(),
           isVideoAutoPlay: liff.getIsVideoAutoPlay(),
-          isSubWindow: liff.isSubWindow(),
           advertisingId: liff.getAdvertisingId && (await liff.getAdvertisingId())
         }
       },
-      { enabled: isLoggedIn.value }
+      { enabled: computed(() => isLoggedIn.value) }
     )
+  }
 
   const sendMessages = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
 
