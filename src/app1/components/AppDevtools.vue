@@ -33,25 +33,33 @@ onMounted(() => {
   >
     <div
       v-if="isOpen"
-      class="grid overflow-scroll grid-cols-1 gap-4 p-4 h-2/5 text-xs text-white bg-slate-800/80"
+      class="grid overflow-scroll grid-cols-1 gap-4 p-4 h-2/5 text-xs text-white bg-slate-900/90"
       @click="isOpen = false"
     >
-      <div>
-        <div class="font-bold">URL Parameters</div>
-        <div class="p-2 whitespace-pre rounded-md border border-white cursor-auto" @click.stop>
-          {{ JSON.stringify(params, null, 2) }}
+      <div v-for="key of Object.keys(inspection)" :key="key">
+        <div class="font-bold capitalize">{{ key }}</div>
+        <div
+          class="overflow-auto p-2 max-h-40 whitespace-pre bg-slate-900/70 rounded-md border border-white cursor-auto"
+          @click.stop
+          @touchmove.stop
+        >
+          {{ JSON.stringify(inspection[key], null, 2) }}
         </div>
       </div>
 
-      <div v-for="key of Object.keys(inspection)" :key="key">
-        <div class="font-bold">{{ key }}</div>
-        <div class="overflow-auto p-2 max-h-40 whitespace-pre rounded-md border border-white cursor-auto" @click.stop>
-          {{ JSON.stringify(inspection[key], null, 2) }}
+      <div>
+        <div class="font-bold">URL Parameters</div>
+        <div
+          class="p-2 whitespace-pre bg-slate-900/70 rounded-md border border-white cursor-auto"
+          @click.stop
+          @touchmove.stop
+        >
+          {{ JSON.stringify(params, null, 2) }}
         </div>
       </div>
     </div>
 
-    <div v-else class="inline-block p-2 text-xs font-bold text-white bg-slate-800/80 rounded-md" @click="isOpen = true">
+    <div v-else class="inline-block p-2 text-xs font-bold text-white bg-slate-900/90 rounded-md" @click="isOpen = true">
       Debug
     </div>
   </div>
