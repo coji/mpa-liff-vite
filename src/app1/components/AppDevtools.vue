@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
+import { LiffProfile } from "~/features/liff/hooks/useLiff"
+
+defineProps<{
+  profile?: LiffProfile
+}>()
+
 const params = ref<object>()
 const isEnabled = ref<boolean>(false)
 const isOpen = ref<boolean>(false)
@@ -27,11 +33,14 @@ onMounted(() => {
     :class="{ 'bottom-0': isOpen, 'bottom-2': !isOpen, 'left-0': isOpen, 'left-2': !isOpen, 'right-0': isOpen }"
   >
     <div v-if="isOpen" class="overflow-scroll p-4 h-64 text-xs text-white bg-slate-800/80" @click="isOpen = false">
-      <div>
-        <div class="font-bold">URL Parameters</div>
-        <div class="overflow-scroll p-1 whitespace-pre border border-white cursor-auto" @click.stop>
-          {{ JSON.stringify(params, null, 2) }}
-        </div>
+      <div class="font-bold">URL Parameters</div>
+      <div class="overflow-scroll p-1 whitespace-pre border border-white cursor-auto" @click.stop>
+        {{ JSON.stringify(params, null, 2) }}
+      </div>
+
+      <div class="font-bold">LINE Profile</div>
+      <div class="overflow-scroll p-1 whitespace-pre border border-white cursor-auto" @click.stop>
+        {{ JSON.stringify(profile, null, 2) }}
       </div>
     </div>
 

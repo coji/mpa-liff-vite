@@ -1,8 +1,15 @@
-import { ref, computed, onMounted } from "vue"
+import { ref, onMounted } from "vue"
 import { useMutation, useQuery } from "vue-query"
 import liff from "@line/liff"
 
-export const useLiff = () => {
+export interface LiffProfile {
+  userId: string
+  displayName: string
+  pictureUrl?: string
+  statusMessage?: string
+}
+
+export const useLiff = (liffId: string) => {
   const isLoggedIn = ref(false)
   const isInit = ref(false)
 
@@ -10,16 +17,18 @@ export const useLiff = () => {
     const initializeLiff = async () => {
       await liff.init(
         {
-          liffId: import.meta.env.VITE_LIFF_ID
+          liffId
         },
         () => {
+          console.log("liff init success")
           isInit.value = true
           if (liff.isLoggedIn()) {
             isLoggedIn.value = true
+            console.log("liff logged in")
           }
         },
         () => {
-          console.log("error!")
+          console.log("liff init error!")
         }
       )
     }
@@ -28,10 +37,11 @@ export const useLiff = () => {
   })
 
   const useProfile = () => {
-    return useQuery("liff.profile", () => liff.getProfile(), {
+    const query = useQuery("liff.profile", () => liff.getProfile(), {
       enabled: isLoggedIn,
       onError: (err) => err
     })
+    return { ...query }
   }
 
   const useSendMessages = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))

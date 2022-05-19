@@ -2,6 +2,8 @@
 import { ref, computed } from "vue"
 import { useLinearRouter } from "~/features/router/hooks/useLinearRouter"
 import RouterBackButton from "~/features/router/components/RouterBackButton.vue"
+import apps from "~/apps.config.json"
+import { useLiff } from "~/features/liff/hooks/useLiff"
 
 import AppDevtools from "./components/AppDevtools.vue"
 import AppHeading from "./components/AppHeading.vue"
@@ -13,6 +15,9 @@ import ShopPage from "./pages/ShopPage.vue"
 import MemberPage from "./pages/MemberPage.vue"
 import SchedulePage from "./pages/SchedulePage.vue"
 import ConfirmPage from "./pages/ConfirmPage.vue"
+
+const { useProfile } = useLiff(apps.app1.liffId.development)
+const profile = useProfile()
 
 const router = useLinearRouter({
   routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"]
@@ -95,6 +100,6 @@ const handleConfirmRegister = () => {
       </div>
     </div>
 
-    <AppDevtools />
+    <AppDevtools :profile="profile.data.value" />
   </div>
 </template>
