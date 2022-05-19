@@ -39,6 +39,7 @@ const selection = ref<Selection>({
   secondChoice: ""
 })
 
+// 都道府県選択
 const handleSelectPrefecture = ({ region, prefecture }: { region: string; prefecture: string }) => {
   if (selection.value.prefecture !== prefecture) selection.value.shop = "" // バックで戻ってきたとき別の都道府県を選択したら店舗選択をリセット
   selection.value.region = region
@@ -46,23 +47,27 @@ const handleSelectPrefecture = ({ region, prefecture }: { region: string; prefec
   router.next()
 }
 
+// 店舗選択
 const handleSelectShop = ({ shop }: { shop: string }) => {
   selection.value.shop = shop
   router.next()
 }
 
+// 人数選択
 const handleSelectMember = ({ member }: { member: string }) => {
   selection.value.member = member
   router.next()
 }
 
-const handleScheduleChoice = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
+// 希望日時選択
+const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
   selection.value.firstChoice = firstChoice
   selection.value.secondChoice = secondChoice
   router.next()
 }
 
 const handleConfirmNext = () => {
+  // ここで予約登録
   router.next()
 }
 </script>
@@ -84,7 +89,7 @@ const handleConfirmNext = () => {
 
       <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
 
-      <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleScheduleChoice" />
+      <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleSelectSchedule" />
 
       <ConfirmPage
         v-if="router.current.value === 'confirm'"
