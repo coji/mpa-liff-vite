@@ -51,6 +51,6 @@ const handleClickNext = () => {
 
     <AppWarning v-if="isError">第1希望、第2希望両方の選択が必要です。</AppWarning>
 
-    <AppNextButton @click="handleClickNext()"> 予約確認 </AppNextButton>
+    <AppNextButton @click="handleClickNext()"> 予約確認へ </AppNextButton>
   </AppStack>
 </template>
