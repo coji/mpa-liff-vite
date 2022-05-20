@@ -57,7 +57,9 @@ const handleSelectMember = ({ member }: { member: string }) => {
 const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
   selection.value.firstChoice = firstChoice
   selection.value.secondChoice = secondChoice
-  router.next()
+  setTimeout(() => {
+    router.next()
+  }, 1000)
 }
 
 // 予約登録

@@ -118,7 +118,6 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
       </div>
     </template>
   </div>
-  <div class="text-center">{{ choice }}</div>
 </template>
 
 <style scoped>
