@@ -63,14 +63,9 @@ const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: stri
 // 予約登録
 const handleConfirmRegister = async () => {
   // ユーザの代わりにLINEトーク送信テスト
-  await sendMessageMutate(
-    "以下の内容で予約しました\n\n" + JSON.stringify({ selection: selection.value, apiResult }, null, 2)
-  )
+  await sendMessageMutate("以下の内容で予約しました\n\n" + JSON.stringify(selection.value, null, 2))
   router.next()
 }
-
-// API コール(実験)
-const apiResult = ref({})
 </script>
 
 <template>
@@ -106,7 +101,6 @@ const apiResult = ref({})
     <DevtoolPanel
       :inspection="{
         selection,
-        apiResult,
         liff: {
           idToken,
           profile
