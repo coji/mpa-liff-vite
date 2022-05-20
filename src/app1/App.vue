@@ -21,7 +21,7 @@ const { mutate: sendMessageMutate } = useSendMessageMutation()
 const liffData = useLiffData()
 
 const router = useLinearRouter({
-  routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"]
+  routing: ["prefecture", "shop", "member", "schedule1", "schedule2", "confirm", "done"]
 })
 const isBackDisabled = computed(() => router.current.value === "prefecture" || router.current.value === "done")
 
@@ -56,11 +56,20 @@ const handleSelectMember = ({ member }: { member: string }) => {
   router.next()
 }
 
-// 希望日時選択
-const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: string; secondChoice: string }) => {
-  selection.value.firstChoice = firstChoice
-  selection.value.secondChoice = secondChoice
-  router.next()
+// 第１希望日時選択
+const handleSelectSchedule1 = (choice?: string) => {
+  selection.value.firstChoice = choice || ""
+  setTimeout(() => {
+    router.next()
+  }, 500)
+}
+
+// 第１希望日時選択
+const handleSelectSchedule2 = (choice?: string) => {
+  selection.value.secondChoice = choice || ""
+  setTimeout(() => {
+    router.next()
+  }, 500)
 }
 
 // 予約登録
@@ -93,7 +102,21 @@ const handleConfirmRegister = () => {
 
       <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
 
-      <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleSelectSchedule" />
+      <SchedulePage
+        v-if="router.current.value === 'schedule1'"
+        heading="第1希望の日時を選択してください"
+        subheading="第1希望"
+        :selection="selection"
+        @select="handleSelectSchedule1"
+      />
+
+      <SchedulePage
+        v-if="router.current.value === 'schedule2'"
+        heading="第2希望の日時を選択してください"
+        subheading="第2希望"
+        :selection="selection"
+        @select="handleSelectSchedule2"
+      />
 
       <ConfirmPage v-if="router.current.value === 'confirm'" :selection="selection" @next="handleConfirmRegister" />
 

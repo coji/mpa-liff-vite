@@ -100,7 +100,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
       <div
         v-for="(day, dayIndex) of days"
         :key="day.toString()"
-        class="flex relative items-stretch leading-4 border"
+        class="flex relative items-stretch leading-4 border transition-colors duration-500"
         :style="{
           'background-color': choice === choiceFormat(day, slot.startAt, slot.endAt) ? 'var(--brand-color-dark)' : ''
         }"
@@ -110,7 +110,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
           v-model="choice"
           type="radio"
           :name="name"
-          class="hidden checked:text-blue-500 w-30"
+          class="hidden"
           :value="choiceFormat(day, slot.startAt, slot.endAt)"
           :checked="choice === choiceFormat(day, slot.startAt, slot.endAt)"
         />
@@ -118,6 +118,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
       </div>
     </template>
   </div>
+  <div class="text-center">{{ choice }}</div>
 </template>
 
 <style scoped>
