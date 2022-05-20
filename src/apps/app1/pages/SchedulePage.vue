@@ -42,7 +42,7 @@ watchEffect(() => {
 
     <AppStack ref="firstBlock" gap="2" class="mb-16">
       <div class="flex gap-4 items-center">
-        <AppHeading level="2" style="color: var(--brand-color-light)">第1希望</AppHeading>
+        <AppHeading level="2" style="color: var(--brand-color)">第1希望</AppHeading>
         <div class="text-gray-600">{{ firstChoice || "未選択" }}</div>
       </div>
 
@@ -51,7 +51,7 @@ watchEffect(() => {
 
     <AppStack ref="secondBlock" gap="2" class="mb-16">
       <div class="flex gap-4 items-center">
-        <AppHeading level="2" style="color: var(--brand-color-light)">第2希望</AppHeading>
+        <AppHeading level="2" style="color: var(--brand-color)">第2希望</AppHeading>
         <div class="text-gray-600">{{ secondChoice || "未選択" }}</div>
       </div>
       <AppWeekSelector v-model="secondChoice" name="secondChoice" />

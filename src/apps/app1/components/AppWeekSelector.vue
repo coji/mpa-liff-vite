@@ -39,7 +39,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
   <div class="flex justify-between">
     <button
       class="rounded-none border-none btn btn-sm"
-      :style="{ 'background-color': startAt === 0 ? undefined : 'var(--brand-color-light)' }"
+      :style="{ 'background-color': startAt === 0 ? undefined : 'var(--brand-color)' }"
       :disabled="startAt === 0"
       @click="startAt = 0"
     >
@@ -57,7 +57,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
     </button>
     <button
       class="rounded-none border-none btn btn-sm"
-      :style="{ 'background-color': startAt === 7 ? undefined : 'var(--brand-color-light)' }"
+      :style="{ 'background-color': startAt === 7 ? undefined : 'var(--brand-color)' }"
       :disabled="startAt === 7"
       @click="startAt = 7"
     >
