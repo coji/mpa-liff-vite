@@ -1,5 +1,5 @@
-import { ref, onMounted, computed } from "vue"
-import { useMutation, useQuery } from "vue-query"
+import { ref, onMounted } from "vue"
+import { useMutation } from "vue-query"
 
 import liff from "@line/liff"
 import { LiffMockPlugin, ExtendedInit, LiffMockApi } from "@line/liff-mock"
@@ -18,63 +18,46 @@ export interface LiffProfile {
   statusMessage?: string
 }
 
-export const useLiff = (liffId: string) => {
+// Liff.getProfile の返り値 promise を unwrap するのに使う
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type UnwrapPromise<T extends Promise<any>> = T extends Promise<infer P> ? P : never
+
+export const useLiff = (liffId: string, options: { isMock: boolean } = { isMock: false }) => {
   const isLoggedIn = ref(false)
   const isInit = ref(false)
+  const idToken = ref<string | null>(null)
+  const profile = ref<UnwrapPromise<ReturnType<typeof liff.getProfile>> | undefined>()
 
   onMounted(() => {
     const initializeLiff = async () => {
       await liff.init(
         {
-          liffId,
-          mock: import.meta.env.DEV
+          liffId: liffId,
+          mock: options.isMock
         },
-        () => {
+        async () => {
+          // 成功時
           isInit.value = true
-          if (import.meta.env.DEV && !liff.isInClient()) {
+          if (options.isMock && !liff.isInClient()) {
             liff.login()
             isLoggedIn.value = true
           }
-          if (liff.isLoggedIn() || import.meta.env.DEV) {
+          if (liff.isLoggedIn() || options.isMock) {
             isLoggedIn.value = true
+            idToken.value = liff.getIDToken()
+            profile.value = await liff.getProfile()
           }
         },
         () => {
+          // 失敗時
           console.log("liff init error!")
         }
       )
     }
-
     initializeLiff()
   })
 
-  // Liff で取得できるデータ全部とる
-  const useLiffData = () => {
-    return useQuery(
-      ["liff.data"],
-      async () => {
-        return {
-          liffId: liffId,
-          profile: await liff.getProfile(),
-          accessToken: liff.getAccessToken(),
-          idToken: liff.getIDToken(),
-          decodedIdToken: liff.getDecodedIDToken(),
-          context: liff.getContext(),
-          friendship: await liff.getFriendship(),
-          os: liff.getOS(),
-          language: liff.getLanguage(),
-          liffSdkVersion: liff.getVersion(),
-          lineVersion: liff.getLineVersion(),
-          isInClient: liff.isInClient(),
-          isVideoAutoPlay: liff.getIsVideoAutoPlay(),
-          advertisingId: liff.getAdvertisingId && (await liff.getAdvertisingId())
-        }
-      },
-      { enabled: computed(() => isLoggedIn.value) }
-    )
-  }
-
-  const useSendMessageMutation = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
+  const sendMessageMutation = () => useMutation((text: string) => liff.sendMessages([{ type: "text", text }]))
 
   const login = () => liff.login()
   const logout = () => liff.logout()
@@ -83,8 +66,9 @@ export const useLiff = (liffId: string) => {
   return {
     isInit,
     isLoggedIn,
-    useLiffData,
-    useSendMessageMutation,
+    idToken,
+    profile,
+    sendMessageMutation,
     login,
     logout,
     closeWindow

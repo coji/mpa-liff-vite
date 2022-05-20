@@ -1,15 +1,14 @@
 import { execSync } from "child_process"
-import { AppsConfig, AppConfig } from "../interfaces/apps-config"
+import type { AppsConfig } from "../interfaces/apps-config"
+import apps from "../apps.config.json"
+const configs: AppsConfig = apps
 
-import config from "../apps.config.json"
-const apps: AppsConfig = config
-
-const executeBuildJson = async (appId: string, app: AppConfig) => {
+const executeBuildJson = async (appId: string, buildJson: string) => {
   try {
     console.log(`${appId} starting build json...`)
-    const stdout = execSync(
-      `node --no-warnings --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/${appId}/build-json/${app.buildJson}`
-    )
+    const cmd = `node --no-warnings --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/apps/${appId}/build-json/${buildJson}`
+    console.log(cmd)
+    const stdout = execSync(cmd)
 
     console.log(stdout.toString())
     console.log(`${appId} build json done.`)
@@ -18,6 +17,7 @@ const executeBuildJson = async (appId: string, app: AppConfig) => {
   }
 }
 
-Object.keys(apps).map((appId) => {
-  if (apps[appId].buildJson) executeBuildJson(appId, apps[appId])
+Object.keys(configs).forEach((appId) => {
+  const { buildJson } = configs[appId]
+  if (buildJson) executeBuildJson(appId, buildJson)
 })

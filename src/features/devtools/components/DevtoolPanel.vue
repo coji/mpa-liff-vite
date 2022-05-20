@@ -38,7 +38,7 @@ onMounted(() => {
   >
     <div
       v-if="isOpen"
-      class="grid overflow-scroll grid-cols-1 gap-4 p-4 h-2/5 text-white bg-slate-900/90"
+      class="grid overflow-scroll grid-cols-1 gap-4 p-4 max-h-full text-white bg-slate-900/90"
       @click.stop
       @touch.stop
     >

@@ -1,11 +1,23 @@
+export interface LiffConfig {
+  liffId: string
+  channelId: string
+}
+
 export interface AppConfig {
-  liffId: {
-    development: string
-    production: string
-  }
+  liff: LiffConfig
+  app?: { [key: string]: string }
   buildJson?: string
 }
 
 export interface AppsConfig {
-  [appId: string]: AppConfig
+  [appId: string]: {
+    liff: {
+      [env: string]: {
+        liffId: string
+        channelId: string
+      }
+    }
+    app?: { [key: string]: string }
+    buildJson?: string
+  }
 }

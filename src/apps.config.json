@@ -1,15 +1,31 @@
 {
   "app1": {
-    "liffId": {
-      "development": "1657135191-kXP5wKG9",
-      "production": "production app1 liff id here"
+    "liff": {
+      "development": {
+        "liffId": "1657135191-kXP5wKG9",
+        "channelId": "1657135191"
+      },
+      "production": {
+        "liffId": "production app1 liff id here",
+        "channelId": "1234567890"
+      }
     },
-    "buildJson": "build-shoplist.ts"
+    "app": {}
   },
   "app2": {
-    "liffId": {
-      "development": "development app2 liff id here",
-      "production": "production app2 liff id here"
-    }
+    "liff": {
+      "development": {
+        "liffId": "development example liff id here",
+        "channelId": "1234567890"
+      },
+      "production": {
+        "liffId": "development example liff id here",
+        "channelId": "1234567890"
+      }
+    },
+    "app": {
+      "greeting": "Hello! example App!"
+    },
+    "buildJson": "example-build-json.ts"
   }
 }

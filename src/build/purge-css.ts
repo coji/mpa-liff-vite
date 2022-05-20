@@ -11,7 +11,7 @@ const executePurgeCSS = async (appId: string, target: string) => {
   try {
     console.log(`${appId} starting purge css...`)
     const stdout = execSync(
-      `tailwindcss  -i src/${appId}/index.css -o ${target} --minify --content "./src/${appId}/**/*.{html,vue},./src/features/**/*.{html,vue}"`
+      `tailwindcss  -i src/apps/${appId}/index.css -o ${target} --minify --content "./src/apps/${appId}/**/*.{html,vue},./src/features/**/*.{html,vue}"`
     )
     console.log(stdout.toString())
     console.log(`${appId} purge css done.`)

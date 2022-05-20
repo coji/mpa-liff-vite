@@ -17,7 +17,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         ...Object.keys(apps).reduce((map, app) => {
-          map[app] = resolve(root, app, "index.html")
+          map[app] = resolve(root, "apps", app, "index.html")
           return map
         }, {})
       }

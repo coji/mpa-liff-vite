@@ -2,7 +2,7 @@
 import { ref, computed } from "vue"
 const props = defineProps<{
   inspectionKey: string
-  inspectionValue: object
+  inspectionValue?: object
 }>()
 
 const json = computed(() => JSON.stringify(props.inspectionValue, null, 2))
@@ -62,7 +62,7 @@ const handleClickCopy = async (text: string) => {
       </button>
     </div>
     <div
-      class="overflow-auto p-2 max-h-40 text-xs whitespace-pre bg-slate-900/70 rounded-md border border-white cursor-auto"
+      class="overflow-auto p-2 max-h-28 text-xs whitespace-pre bg-slate-900/70 rounded-md border border-white cursor-auto"
       @touch.stop
     >
       {{ json }}

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build:purgecss": "node --no-warnings --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/build/purge-css.ts",
-    "build:json": "node --no-warnings --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/build/build-json.ts",
+    "build:json": "NODE_ENV=build:json node --no-warnings --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/build/build-json.ts",
     "build:apps": "vue-tsc --noEmit && vite build",
     "build": "run-s build:{json,apps}",
     "preview": "vite preview",

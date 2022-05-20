@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppNextCircleMark from "../components/AppNextCircleMark.vue"
+import AppNextCircleMark from "./AppNextCircleMark.vue"
 </script>
 
 <template>
