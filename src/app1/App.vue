@@ -6,6 +6,7 @@ import apps from "~/apps.config.json"
 import { useLiff } from "~/features/liff/hooks/useLiff"
 
 import DevtoolPanel from "~/features/devtools/components/DevtoolPanel.vue"
+import AppStack from "./components/AppStack.vue"
 import AppHeading from "./components/AppHeading.vue"
 import type { Selection, ShopListMaster } from "./interfaces/model"
 import shoplist from "./assets/shoplist.json"
@@ -21,7 +22,7 @@ const { mutate: sendMessageMutate } = useSendMessageMutation()
 const liffData = useLiffData()
 
 const router = useLinearRouter({
-  routing: ["prefecture", "shop", "member", "schedule1", "schedule2", "confirm", "done"]
+  routing: ["prefecture", "shop", "member", "schedule", "confirm", "done"]
 })
 const isBackDisabled = computed(() => router.current.value === "prefecture" || router.current.value === "done")
 
@@ -57,15 +58,19 @@ const handleSelectMember = ({ member }: { member: string }) => {
 }
 
 // 第１希望日時選択
+const schedule2El = ref<InstanceType<typeof SchedulePage>>()
 const handleSelectSchedule1 = (choice?: string) => {
+  console.log("schedule1")
   selection.value.firstChoice = choice || ""
   setTimeout(() => {
-    router.next()
+    // router.next()
+    schedule2El.value?.$el.scrollIntoView({ behavior: "smooth" })
   }, 500)
 }
 
 // 第１希望日時選択
 const handleSelectSchedule2 = (choice?: string) => {
+  console.log("schedule2")
   selection.value.secondChoice = choice || ""
   setTimeout(() => {
     router.next()
@@ -102,21 +107,25 @@ const handleConfirmRegister = () => {
 
       <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
 
-      <SchedulePage
-        v-if="router.current.value === 'schedule1'"
-        heading="第1希望の日時を選択してください"
-        subheading="第1希望"
-        :selection="selection"
-        @select="handleSelectSchedule1"
-      />
+      <AppStack v-if="router.current.value === 'schedule'">
+        <SchedulePage
+          heading="第1希望の日時を選択してください"
+          subheading="第1希望"
+          :selection="selection"
+          name="firstChoice"
+          @select="handleSelectSchedule1"
+        />
 
-      <SchedulePage
-        v-if="router.current.value === 'schedule2'"
-        heading="第2希望の日時を選択してください"
-        subheading="第2希望"
-        :selection="selection"
-        @select="handleSelectSchedule2"
-      />
+        <SchedulePage
+          ref="schedule2El"
+          class="mb-80"
+          heading="第2希望の日時を選択してください"
+          subheading="第2希望"
+          :selection="selection"
+          name="secondChoice"
+          @select="handleSelectSchedule2"
+        />
+      </AppStack>
 
       <ConfirmPage v-if="router.current.value === 'confirm'" :selection="selection" @next="handleConfirmRegister" />
 

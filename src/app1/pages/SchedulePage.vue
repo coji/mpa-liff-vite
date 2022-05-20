@@ -9,6 +9,7 @@ const props = defineProps<{
   heading: string
   subheading: string
   selection?: Selection
+  name?: string
 }>()
 
 const choice = ref<string>()
@@ -35,7 +36,7 @@ watchEffect(() => {
 
     <AppStack gap="2">
       <AppHeading level="2" style="color: var(--brand-color-light)">{{ subheading }}</AppHeading>
-      <AppWeekSelector v-model="choice" name="choice" />
+      <AppWeekSelector v-model="choice" :name="name || 'choice'" />
     </AppStack>
   </AppStack>
 </template>
