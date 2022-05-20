@@ -81,7 +81,7 @@ const handleConfirmRegister = () => {
 </script>
 
 <template>
-  <div id="top" class="relative min-h-screen">
+  <div id="top" class="relative">
     <RouterBackButton
       :router="router"
       class="absolute top-0 left-2"
