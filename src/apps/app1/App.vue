@@ -7,6 +7,7 @@ import RouterBackButton from "~/features/router/components/RouterBackButton.vue"
 import { getAppConfig } from "~/utils/app-config"
 
 import type { Selection } from "./interfaces/model"
+import AppPageTransition from "./components/AppPageTransition.vue"
 import AppHeading from "./components/AppHeading.vue"
 
 import PrefecturePage from "./pages/PrefecturePage.vue"
@@ -78,20 +79,26 @@ const handleConfirmRegister = async () => {
     />
 
     <div class="m-4">
-      <PrefecturePage v-if="router.current.value === 'prefecture'" @select="handleSelectPrefecture" />
+      <AppPageTransition :direction="router.transition.value">
+        <PrefecturePage v-if="router.current.value === 'prefecture'" @select="handleSelectPrefecture" />
 
-      <ShopPage
-        v-if="router.current.value === 'shop'"
-        :prefecture="selection.prefecture"
-        :selection="selection"
-        @select="handleSelectShop"
-      />
+        <ShopPage
+          v-if="router.current.value === 'shop'"
+          :prefecture="selection.prefecture"
+          :selection="selection"
+          @select="handleSelectShop"
+        />
 
-      <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
+        <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
 
-      <SchedulePage v-if="router.current.value === 'schedule'" :selection="selection" @select="handleSelectSchedule" />
+        <SchedulePage
+          v-if="router.current.value === 'schedule'"
+          :selection="selection"
+          @select="handleSelectSchedule"
+        />
 
-      <ConfirmPage v-if="router.current.value === 'confirm'" :selection="selection" @next="handleConfirmRegister" />
+        <ConfirmPage v-if="router.current.value === 'confirm'" :selection="selection" @next="handleConfirmRegister" />
+      </AppPageTransition>
 
       <div v-if="router.current.value === 'done'" class="text-center">
         <AppHeading level="1" class="mt-32 text-center">予約が完了しました。</AppHeading>

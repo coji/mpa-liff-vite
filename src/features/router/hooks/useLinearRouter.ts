@@ -7,10 +7,12 @@ export type LinearRouter = ReturnType<typeof useLinearRouter>
 export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
   const current = ref(0)
   const history = ref<string[]>([routing[0]])
+  const transition = ref<"next" | "back">("next")
 
   // 次へ
   const next = () => {
     if (routing.length > current.value + 1) {
+      transition.value = "next"
       window.scrollTo({ top: 0 })
       history.value.push(routing[current.value])
       current.value++
@@ -21,6 +23,7 @@ export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
   // 戻る
   const back = () => {
     if (current.value > 0) {
+      transition.value = "back"
       window.scrollTo({ top: 0 })
       history.value.push(routing[current.value])
       current.value--
@@ -32,6 +35,7 @@ export const useLinearRouter = ({ routing }: { routing: RouteDefinition }) => {
     current: computed(() => routing[current.value]),
     history,
     canBack: computed(() => current.value > 0),
+    transition,
     next,
     back
   }
