@@ -107,7 +107,7 @@ const handleConfirmRegister = () => {
 
       <MemberPage v-if="router.current.value === 'member'" :selection="selection" @select="handleSelectMember" />
 
-      <AppStack v-if="router.current.value === 'schedule'">
+      <AppStack v-if="router.current.value === 'schedule'" :gap="32">
         <SchedulePage
           heading="第1希望の日時を選択してください"
           subheading="第1希望"
@@ -118,7 +118,7 @@ const handleConfirmRegister = () => {
 
         <SchedulePage
           ref="schedule2El"
-          class="mb-80"
+          class="mb-40"
           heading="第2希望の日時を選択してください"
           subheading="第2希望"
           :selection="selection"

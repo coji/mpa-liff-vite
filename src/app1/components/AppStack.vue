@@ -21,7 +21,9 @@ withDefaults(
       'gap-5': gap == 5,
       'gap-6': gap == 6,
       'gap-7': gap == 7,
-      'gap-8': gap == 8
+      'gap-8': gap == 8,
+      'gap-16': gap == 16,
+      'gap-32': gap == 32
     }"
     v-bind="$attrs"
   >
