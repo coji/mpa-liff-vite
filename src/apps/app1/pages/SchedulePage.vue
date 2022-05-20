@@ -40,7 +40,7 @@ watchEffect(() => {
   <AppStack>
     <AppHeading level="1">ご希望の日時を選択してください</AppHeading>
 
-    <AppStack ref="firstBlock" gap="2" class="mb-64">
+    <AppStack ref="firstBlock" gap="2" class="mb-16">
       <div class="flex gap-4 items-center">
         <AppHeading level="2" style="color: var(--brand-color-light)">第1希望</AppHeading>
         <div class="text-gray-600">{{ firstChoice || "未選択" }}</div>
@@ -49,7 +49,7 @@ watchEffect(() => {
       <AppWeekSelector v-model="firstChoice" name="firstChoice" />
     </AppStack>
 
-    <AppStack ref="secondBlock" gap="2" class="mb-64">
+    <AppStack ref="secondBlock" gap="2" class="mb-16">
       <div class="flex gap-4 items-center">
         <AppHeading level="2" style="color: var(--brand-color-light)">第2希望</AppHeading>
         <div class="text-gray-600">{{ secondChoice || "未選択" }}</div>
