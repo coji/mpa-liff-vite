@@ -15,10 +15,8 @@ import MemberPage from "./pages/MemberPage.vue"
 import SchedulePage from "./pages/SchedulePage.vue"
 import ConfirmPage from "./pages/ConfirmPage.vue"
 
-import ky from "ky"
-
-const { liffId, channelId } = getAppConfig({ appId: "app1" }).liff
-const { profile, idToken, sendMessageMutation } = useLiff(liffId, { isMock: false })
+const { liffId } = getAppConfig({ appId: "app1" }).liff
+const { profile, idToken, sendMessageMutation } = useLiff(liffId, { isMock: import.meta.env.DEV })
 const { mutate: sendMessageMutate } = sendMessageMutation()
 
 const router = useLinearRouter({
@@ -64,31 +62,15 @@ const handleSelectSchedule = ({ firstChoice, secondChoice }: { firstChoice: stri
 
 // 予約登録
 const handleConfirmRegister = async () => {
-  // ここで登録処理を行う
-  const apiResult = await cbcvApiCall()
-
   // ユーザの代わりにLINEトーク送信テスト
   await sendMessageMutate(
     "以下の内容で予約しました\n\n" + JSON.stringify({ selection: selection.value, apiResult }, null, 2)
   )
-
   router.next()
 }
 
 // API コール(実験)
 const apiResult = ref({})
-const cbcvApiCall = async () => {
-  apiResult.value = await ky
-    .post("/api/liff_test", {
-      json: {
-        selection: selection.value,
-        id_token: idToken.value,
-        client_id: channelId
-      }
-    })
-    .json()
-  return apiResult.value
-}
 </script>
 
 <template>
@@ -118,9 +100,6 @@ const cbcvApiCall = async () => {
 
       <div v-if="router.current.value === 'done'" class="text-center">
         <AppHeading level="1" class="mt-32 text-center">予約が完了しました。</AppHeading>
-        <div>
-          {{ apiResult }}
-        </div>
       </div>
     </div>
 
