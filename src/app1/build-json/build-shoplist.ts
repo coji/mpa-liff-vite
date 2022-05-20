@@ -22,7 +22,17 @@ const main = async () => {
 
   // 扱いやすい形に変換
   const shopRows = data.values as string[] // 元データ: ['関東', '東京', '銀座店']
-  const master: ShopListMaster = {} // 変換後: { "関東": {"東京": [{"region": "関東", "prefecture": "東京", "name": "銀座店"}] }}
+  const master: ShopListMaster = {}
+  // 変換後:
+  // {
+  //   "関東": {
+  //      "東京": {
+  //        [{ region: "関東", prefecture: "東京", name: "銀座店" },
+  //         { region: "関東", prefecture: "東京", name: "渋谷店" }]
+  //      }
+  //   }
+  // }
+
   shopRows.forEach((shopRow) => {
     const shop = {
       region: shopRow[0],
