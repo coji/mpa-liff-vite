@@ -8,7 +8,7 @@ const executeBuildJson = async (appId: string, app: AppConfig) => {
   try {
     console.log(`${appId} starting build json...`)
     const stdout = execSync(
-      `node --no-warnings  --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/${appId}/build-json/${app.buildJson}`
+      `node --no-warnings --experimental-loader=ts-node/esm --es-module-specifier-resolution=node src/${appId}/build-json/${app.buildJson}`
     )
 
     console.log(stdout.toString())

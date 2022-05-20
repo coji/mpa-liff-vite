@@ -11,7 +11,7 @@ const isEnabled = ref<boolean>(false)
 const isOpen = ref<boolean>(false)
 
 onMounted(() => {
-  // URLパラメータを hash object に
+  // URLパラメータを hash object にする
   function paramsToObject(searchParams: URLSearchParams): object {
     const result: { [key: string]: string } = {}
     for (const [key, value] of searchParams.entries()) {
@@ -20,12 +20,13 @@ onMounted(() => {
     return result
   }
 
+  // URL parameter ?debug=1 で有効に
   const searchParams = new URLSearchParams(window.location.search)
   params.value = paramsToObject(searchParams)
   if (searchParams.get("debug") === "1") {
     isEnabled.value = true
     console.log("Debug inspector enabled")
-  } // debug=1 で有効に
+  }
 })
 </script>
 
