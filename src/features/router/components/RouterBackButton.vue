@@ -14,7 +14,13 @@ const disabled = computed(() => !props.router.canBack.value || props.disabled)
 </script>
 
 <template>
-  <button :disabled="disabled" :class="{ invisible: disabled }" v-bind="$attrs" @click="router.back()">
+  <button
+    :disabled="disabled"
+    class="hover:contrast-150"
+    :class="{ invisible: disabled }"
+    v-bind="$attrs"
+    @click="router.back()"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="w-7 h-7"

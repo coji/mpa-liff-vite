@@ -17,20 +17,11 @@ const handleClick = (e: MouseEvent) => {
 <template>
   <button
     class="inline-block w-20 h-8 font-bold text-white rounded-md border-0 btn"
-    :class="{ active: isClicked, normal: !isClicked }"
+    style="background: linear-gradient(to bottom, #ef7393 0%, #d24b6d 100%)"
+    :class="{ 'contrast-150': isClicked }"
     v-bind="$attrs"
     @click="handleClick"
   >
     <slot></slot>
   </button>
 </template>
-
-<style scoped>
-.active {
-  background: linear-gradient(to bottom, #af3353 0%, #920b2d 100%);
-}
-
-.normal {
-  background: linear-gradient(to bottom, #ef7393 0%, #d24b6d 100%);
-}
-</style>

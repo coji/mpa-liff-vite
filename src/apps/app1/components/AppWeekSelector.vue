@@ -38,7 +38,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
 <template>
   <div class="flex justify-between">
     <button
-      class="rounded-none border-none btn btn-sm"
+      class="rounded-none border-none hover:contrast-150 btn btn-sm"
       :style="{ 'background-color': startAt === 0 ? undefined : 'var(--brand-color)' }"
       :disabled="startAt === 0"
       @click="startAt = 0"
@@ -56,7 +56,7 @@ const choiceFormat = (day: dayjs.Dayjs, startAt: string, endAt: string) =>
       前の7日
     </button>
     <button
-      class="rounded-none border-none btn btn-sm"
+      class="rounded-none border-none hover:contrast-150 btn btn-sm"
       :style="{ 'background-color': startAt === 7 ? undefined : 'var(--brand-color)' }"
       :disabled="startAt === 7"
       @click="startAt = 7"
